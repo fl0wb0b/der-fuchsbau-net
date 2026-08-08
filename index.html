@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Fuchsbau · Kindertagespflege</title>
+<meta name="description" content="Der Fuchsbau – liebevolle Kindertagespflege in Hungen. Wir sind bald für euch da.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fox:      #D4622A;
+    --fox-dk:   #8B3A1A;
+    --fox-lt:   #F2A96E;
+    --fox-pale: #FEF4EC;
+    --cream:    #FBF7F2;
+    --bark:     #2C1F14;
+    --mid:      #7A6050;
+    --light:    #B8A090;
+    --border:   rgba(44,31,20,.1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--bark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 2rem;
+    box-shadow: 0 20px 60px rgba(44,31,20,.12);
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .card-body {
+    padding: 2.5rem 2.5rem 3rem;
+  }
+
+  /* Runder Rahmen – Best Practice */
+  .fox-avatar {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    /* Doppelter Ring: innen fox-pale, außen fox-Farbe */
+    outline: 4px solid var(--fox);
+    outline-offset: 4px;
+    box-shadow:
+      0 0 0 8px var(--fox-pale),   /* weicher Puffer-Ring */
+      0 12px 40px rgba(212,98,42,.25); /* warmer Schatten */
+    overflow: hidden;
+    background: var(--fox-pale);
+    /* verhindert Kantenflimmern auf Retina */
+    transform: translateZ(0);
+  }
+
+  .fox-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Bildausschnitt: Fuchs ist oben-mittig im Bild */
+    object-position: center 50%;
+    display: block;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--bark);
+    line-height: 1.2;
+    margin-bottom: .3rem;
+  }
+
+  h1 span {
+    color: var(--fox);
+    font-style: italic;
+  }
+
+  .subtitle {
+    font-size: .95rem;
+    color: var(--mid);
+    margin-bottom: 0;
+    font-weight: 300;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    font-size: .8rem;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.6rem 0;
+  }
+
+  .message {
+    font-size: 1.05rem;
+    color: var(--mid);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .message strong {
+    color: var(--bark);
+    font-weight: 600;
+  }
+
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: .9rem 2rem;
+    border-radius: 3rem;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 4px 16px rgba(37,211,102,.3);
+  }
+
+  .wa-btn:hover {
+    background: #1fba58;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,.4);
+  }
+
+  .wa-btn svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .footer {
+    margin-top: 2rem;
+    font-size: .8rem;
+    color: var(--light);
+  }
+
+  .footer a {
+    color: var(--light);
+    text-decoration: none;
+  }
+
+  .footer a:hover { color: var(--mid); }
+
+  @media (max-width: 480px) {
+    .card-body { padding: 2rem 1.5rem 2.5rem; }
+    h1 { font-size: 1.6rem; }
+    .fox-avatar { width: 160px; height: 160px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-body">
+    <div class="fox-avatar">
+      <img src="fuchs.jpg" alt="Mama-Fuchs mit ihren Jungen – Der Fuchsbau">
+    </div>
+    <h1>Der <span>Fuchsbau</span></h1>
+    <p class="subtitle">Kindertagespflege</p>
+
+    <hr class="divider">
+
+    <p class="message">
+      Unsere neue Website ist noch im Aufbau.<br>
+      <strong>Wir sind bald für euch da!</strong><br><br>
+      Bis dahin könnt ihr uns einfach direkt über WhatsApp erreichen.
+    </p>
+
+    <a class="wa-btn" href="https://wa.me/491627820602" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Schreib uns auf WhatsApp
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
