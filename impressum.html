@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Impressum · Der Fuchsbau</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 <style>
 :root{
   --fox:#D4622A;--fox-dk:#8B3A1A;--fox-lt:#F2A96E;
@@ -13,20 +13,20 @@
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--bark);min-height:100vh}
+body{font-family:var(--font-body);background:var(--cream);color:var(--bark);min-height:100vh}
 
 /* NAV */
 nav{background:rgba(251,246,240,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(44,31,20,.07);padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--bark)}
 .nav-brand span{font-size:1.6rem}
-.nav-brand strong{font-family:'Fraunces',serif;font-size:1.1rem}
+.nav-brand strong{font-family:var(--font-display);font-size:1.1rem}
 .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--mid);font-size:.88rem;font-weight:500;padding:8px 16px;border-radius:50px;border:1.5px solid var(--offwhite);transition:all .2s}
 .back-link:hover{border-color:var(--fox-lt);color:var(--fox)}
 
 /* HERO */
 .imp-hero{background:linear-gradient(150deg,#2c1a0e,#1e2c1a);padding:80px 24px 60px;text-align:center}
 .imp-hero .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--fox-lt);margin-bottom:14px}
-.imp-hero h1{font-family:'Fraunces',serif;font-size:clamp(2.2rem,5vw,3.5rem);color:white;margin-bottom:14px}
+.imp-hero h1{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.5rem);color:white;margin-bottom:14px}
 .imp-hero p{color:rgba(255,255,255,.45);font-size:.95rem;font-weight:300}
 .fox-illo{font-size:4rem;margin-bottom:20px;display:block;filter:drop-shadow(0 8px 24px rgba(212,98,42,.4))}
 
@@ -35,7 +35,7 @@ nav{background:rgba(251,246,240,.95);backdrop-filter:blur(12px);border-bottom:1p
 
 /* Section */
 .imp-section{margin-bottom:48px}
-.imp-section-title{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--bark);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--offwhite);display:flex;align-items:center;gap:10px}
+.imp-section-title{font-family:var(--font-display);font-size:1.4rem;color:var(--bark);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--offwhite);display:flex;align-items:center;gap:10px}
 .imp-section-title .dot{width:8px;height:8px;border-radius:50%;background:var(--fox);flex-shrink:0}
 
 /* Cards grid */
