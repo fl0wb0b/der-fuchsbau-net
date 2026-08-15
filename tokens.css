@@ -42,6 +42,10 @@
   --color-badge-sms-dn: oklch(76%  0.10  235);
   --color-badge-mail:  oklch(83%   0.09  60);  /* E-Mail apricot */
   --color-badge-mail-dn: oklch(79% 0.10  60);
+  --color-badge-ig:    oklch(83%   0.08  340); /* Instagram rosé */
+  --color-badge-ig-dn: oklch(79%   0.09  340);
+  --color-badge-maps:  oklch(82%   0.08  25);  /* Google Maps koralle */
+  --color-badge-maps-dn: oklch(78% 0.09  25);
 
   /* Schrift — Bricolage Grotesque (Display) + Geist (Body), beide OFL, selbst gehostet */
   --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
