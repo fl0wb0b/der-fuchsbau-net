@@ -827,8 +827,8 @@ body {
 
 <footer class="foot-marquee" aria-label="Fußzeile">
   <div class="foot-marquee__track" aria-hidden="true">
-    <span>Der Fuchsbau · Kindertagespflege · Mücke · Der Fuchsbau · Kindertagespflege · Mücke ·</span>
-    <span>Der Fuchsbau · Kindertagespflege · Mücke · Der Fuchsbau · Kindertagespflege · Mücke ·</span>
+    <span>Der Fuchsbau · Kindertagespflege · Mücke · Der Fuchsbau · Kindertagespflege · Mücke · Der Fuchsbau · Kindertagespflege · Mücke · Der Fuchsbau · Kindertagespflege · Mücke ·</span>
+    <span>Der Fuchsbau · Kindertagespflege · Mücke · Der Fuchsbau · Kindertagespflege · Mücke · Der Fuchsbau · Kindertagespflege · Mücke · Der Fuchsbau · Kindertagespflege · Mücke ·</span>
   </div>
   <p class="visually-hidden">Der Fuchsbau · Kindertagespflege · Mücke</p>
   <div class="foot-meta">
@@ -897,6 +897,13 @@ body {
         });
       });
       track.addEventListener('scroll', updateButtons, { passive: true });
+      window.addEventListener('resize', updateButtons, { passive: true });
+      // Lazy geladene Bilder verändern die Scrollbreite erst später:
+      // Button-Zustand nach jedem Bild-Load neu berechnen
+      track.querySelectorAll('img').forEach(function (im) {
+        if (im.complete) return;
+        im.addEventListener('load', updateButtons);
+      });
       updateButtons();
     })
     .catch(function () { /* keine Galerie — Sektion bleibt unsichtbar */ });
