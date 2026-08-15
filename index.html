@@ -186,7 +186,8 @@ body {
   gap: var(--space-xl);
   align-items: center;
   padding: var(--space-2xl) var(--page-gutter) var(--space-3xl);
-  max-width: 68rem;
+  max-width: var(--content-max);
+  margin-inline: auto;
 }
 .hero-art h1 {
   font-family: var(--font-display);
@@ -226,10 +227,12 @@ body {
 
 /* ---- FAQ · das ehrliche Interview ---- */
 .faq {
-  max-width: 46rem;
+  max-width: var(--content-max);
+  margin-inline: auto;
   padding-inline: var(--page-gutter);
   margin-bottom: var(--space-2xl);
 }
+.faq details { max-width: var(--text-col); }
 .faq details { border-top: var(--rule-heavy); }
 .faq details:last-of-type { border-bottom: var(--rule-heavy); }
 .faq summary {
@@ -283,7 +286,8 @@ body {
 
 /* ---- Einblicke · Foto-Galerie (erscheint erst, wenn gallery/ synchronisiert ist) ---- */
 .gallery {
-  max-width: 68rem;
+  max-width: var(--content-max);
+  margin-inline: auto;
   padding-inline: var(--page-gutter);
   margin-bottom: var(--space-2xl);
 }
@@ -365,7 +369,8 @@ body {
 
 /* ---- Stimmen · Google-Bewertungen (erscheint erst, wenn reviews.json synchronisiert ist) ---- */
 .voices {
-  max-width: 46rem;
+  max-width: var(--content-max);
+  margin-inline: auto;
   padding-inline: var(--page-gutter);
   margin-bottom: var(--space-2xl);
 }
@@ -414,7 +419,8 @@ body {
 
 /* ---- Kontakt-CTA am Fuß der Fragen ---- */
 .ask {
-  max-width: 46rem;
+  max-width: var(--content-max);
+  margin-inline: auto;
   padding-inline: var(--page-gutter);
   margin-bottom: var(--space-3xl);
 }
@@ -486,6 +492,8 @@ body {
 .fox-sleeper {
   display: flex;
   justify-content: flex-end;
+  max-width: var(--content-max);
+  margin-inline: auto;
   padding-inline: var(--page-gutter);
   margin-bottom: -1px;
 }
@@ -577,8 +585,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs) var(--space-lg);
+  max-width: var(--content-max);
+  margin-inline: auto;
   padding: var(--space-md) var(--page-gutter) var(--space-lg);
-  border-top: var(--rule-hairline);
   font-size: var(--text-sm);
   color: var(--color-muted);
 }
