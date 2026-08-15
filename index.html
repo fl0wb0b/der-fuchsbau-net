@@ -468,6 +468,28 @@ body {
 .ask__alt a { color: var(--color-ink-2); text-underline-offset: 0.2em; white-space: nowrap; }
 .ask__alt a:hover { color: var(--color-ink); }
 
+/* ---- Schlafender Fuchs — ruht auf der Footer-Linie (Mittagsschlaf) ---- */
+.fox-sleeper {
+  display: flex;
+  justify-content: flex-end;
+  padding-inline: var(--page-gutter);
+  margin-bottom: -1px;
+}
+.fox-sleeper svg {
+  width: 58px;
+  height: auto;
+  display: block;
+  transform-origin: bottom center;
+  animation: fox-breathe 4s ease-in-out infinite alternate;
+}
+.fox-sleeper .fs-fur  { fill: var(--color-accent); }
+.fox-sleeper .fs-dark { fill: var(--color-accent-deep); }
+.fox-sleeper .fs-tip  { fill: var(--color-photo-paper); }
+.fox-sleeper .fs-ink  { fill: var(--color-ink); }
+.fox-sleeper .fs-line { fill: none; stroke: var(--color-ink); stroke-width: 2; stroke-linecap: round; }
+@keyframes fox-breathe { from { transform: scaleY(1); } to { transform: scaleY(1.035); } }
+@media (prefers-reduced-motion: reduce) { .fox-sleeper svg { animation: none; } }
+
 /* ---- Footer · Ft8 marquee scroll ---- */
 .foot-marquee { overflow: hidden; border-top: var(--rule-heavy); }
 .foot-marquee__track {
@@ -649,6 +671,21 @@ body {
     helft ihr anderen Familien aus der Umgebung, uns zu finden.</p>
   </section>
 </main>
+
+<div class="fox-sleeper" aria-hidden="true">
+  <svg viewBox="0 0 84 46" xmlns="http://www.w3.org/2000/svg">
+    <ellipse class="fs-fur" cx="44" cy="29" rx="31" ry="16"/>
+    <path class="fs-fur" d="M 72 32 C 70 41 56 46 40 45 C 26 44 15 40 13 33 C 20 40 38 42 52 40 C 62 38 69 36 72 32 Z"/>
+    <path class="fs-dark" d="M 14 33 C 20 39 34 42 46 41 C 36 43 22 41 15 36 Z" opacity="0.35"/>
+    <path class="fs-tip" d="M 13 33 C 14 38 20 41 27 41 C 23 36 20 33 19 29 C 16 30 13 31 13 33 Z"/>
+    <circle class="fs-fur" cx="21" cy="23" r="12"/>
+    <polygon class="fs-fur" points="24,13 30,3 34,14"/>
+    <polygon class="fs-dark" points="26.5,11 30,5.5 32.5,12"/>
+    <path class="fs-tip" d="M 10 26 C 13 23 18 22 21 24 C 21 29 16 32 11 30 C 9.5 29 9.5 27 10 26 Z"/>
+    <path class="fs-line" d="M 16 21 Q 19 24 23 21"/>
+    <circle class="fs-ink" cx="10" cy="27" r="2"/>
+  </svg>
+</div>
 
 <footer class="foot-marquee" aria-label="Fußzeile">
   <div class="foot-marquee__track" aria-hidden="true">
