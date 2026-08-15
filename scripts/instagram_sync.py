@@ -91,11 +91,13 @@ def main() -> int:
                 quality=JPEG_QUALITY, optimize=True)
 
         caption = (post.get("caption") or "").strip().replace("\n", " ")
-        if len(caption) > 120:
-            caption = caption[:117] + "…"
+        alt = caption if len(caption) <= 120 else caption[:117] + "…"
+        if len(caption) > 220:
+            caption = caption[:217].rsplit(" ", 1)[0] + "…"
         items.append({
             "file": filename,
-            "alt": caption or "Foto aus dem Fuchsbau (von Instagram)",
+            "alt": alt or "Foto aus dem Fuchsbau (von Instagram)",
+            "caption": caption,
             "link": post.get("permalink") or "",
         })
 

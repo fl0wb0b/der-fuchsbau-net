@@ -333,10 +333,19 @@ body {
   background: var(--color-photo-paper);
   padding: var(--space-2xs);
 }
+.g-slide { display: table; text-decoration: none; }
 .g-slide img {
   display: block;
   height: clamp(200px, 40vw, 320px);
   width: auto;
+}
+.g-cap {
+  display: table-caption;
+  caption-side: bottom;
+  padding: var(--space-xs) var(--space-2xs) var(--space-2xs);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-muted);
 }
 .gallery__more {
   display: inline-flex;
@@ -445,6 +454,10 @@ body {
 .c-btn--sms:hover { background: var(--color-badge-sms-dn); }
 .c-btn--mail { background: var(--color-badge-mail); }
 .c-btn--mail:hover { background: var(--color-badge-mail-dn); }
+.c-btn--ig { background: var(--color-badge-ig); }
+.c-btn--ig:hover { background: var(--color-badge-ig-dn); }
+.c-btn--maps { background: var(--color-badge-maps); }
+.c-btn--maps:hover { background: var(--color-badge-maps-dn); }
 .contact-links { display: flex; flex-wrap: wrap; gap: var(--space-md) var(--space-lg); margin-top: var(--space-lg); }
 .ig-link {
   color: var(--color-accent-deep);
@@ -642,13 +655,16 @@ body {
     <details open>
       <summary><h2>Was ist der Fuchsbau?</h2><span class="marker" aria-hidden="true">+</span></summary>
       <div class="answer">
-        <p>Eine Kindertagespflege für junge Kinder bei Katharina Klee —
-        mit Pflegeerlaubnis und Zulassung des Jugendamts nach
+        <p>Ich bin Katharina, und der Fuchsbau ist meine Kindertagespflege
+        in Mücke — mit Pflegeerlaubnis und Zulassung des Jugendamts nach
         §&#8202;43 SGB&#8202;VIII.</p>
-        <p>In unserer kleinen, festen Gruppe lernen die Kinder das
-        Zusammenspielen: gemeinsam die Natur entdecken, spielen und
-        lesen, basteln und malen. Persönlich und familiär — jedes Kind
-        wird gesehen.</p>
+        <p>Bei mir sind die Kinder in einer kleinen, festen Gruppe
+        zuhause. Hier lernen sie das Zusammenspielen: Wir entdecken
+        gemeinsam die Natur, spielen und lesen, basteln und malen.
+        Ich arbeite bedürfnisorientiert — jedes Kind bekommt die Zeit
+        und die Aufmerksamkeit, die es gerade braucht.</p>
+        <p>Und wenn das Wetter mitspielt, sind wir draußen unterwegs —
+        im Garten, auf Ausflügen oder bei unserem Pferd.</p>
       </div>
     </details>
     <details>
@@ -670,13 +686,13 @@ body {
 
   <section class="gallery" id="einblicke" hidden>
     <div class="gallery__head">
-      <h2>Einblicke</h2>
+      <h2>Was gibt's Neues?</h2>
       <div class="gallery__nav">
         <button class="g-btn" type="button" data-dir="-1" aria-label="Vorherige Fotos">←</button>
         <button class="g-btn" type="button" data-dir="1" aria-label="Weitere Fotos">→</button>
       </div>
     </div>
-    <div class="g-track" tabindex="0" role="region" aria-label="Fotos aus dem Fuchsbau — mit Pfeiltasten oder Wischen blättern"></div>
+    <div class="g-track" tabindex="0" role="region" aria-label="Neuigkeiten aus dem Fuchsbau — mit Pfeiltasten oder Wischen blättern"></div>
     <a class="gallery__more" href="https://www.instagram.com/der_fuchsbau2025/" target="_blank" rel="noopener">Mehr auf Instagram&nbsp;↗</a>
   </section>
 
@@ -715,8 +731,21 @@ body {
       </a>
     </div>
     <div class="contact-links">
-      <a class="ig-link" href="https://www.instagram.com/der_fuchsbau2025/" target="_blank" rel="noopener">Instagram&nbsp;↗</a>
-      <a class="ig-link" href="https://maps.app.goo.gl/oRQpjVbUsBX8zNqx9" target="_blank" rel="noopener">Google&nbsp;Maps&nbsp;↗</a>
+      <a class="c-btn c-btn--ig" href="https://www.instagram.com/der_fuchsbau2025/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.2" cy="6.8" r="1.4" fill="currentColor" stroke="none"/>
+        </svg>
+        Instagram
+      </a>
+      <a class="c-btn c-btn--maps" href="https://maps.app.goo.gl/oRQpjVbUsBX8zNqx9" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 12 21 C 12 21 5 13.6 5 9 A 7 7 0 0 1 19 9 C 19 13.6 12 21 12 21 Z"/>
+          <circle cx="12" cy="9" r="2.4"/>
+        </svg>
+        Google Maps
+      </a>
     </div>
     <p class="ask__alt">Oder klassisch anrufen: <a href="tel:+491627820602">0162&nbsp;7820602</a>.
     Wir melden uns persönlich zurück.</p>
@@ -816,7 +845,6 @@ body {
         if (!item || !item.file) return;
         var img = document.createElement('img');
         img.src = 'gallery/' + item.file;
-        img.alt = item.alt || 'Foto aus dem Fuchsbau';
         img.loading = 'lazy';
         img.decoding = 'async';
         var slide;
@@ -830,6 +858,16 @@ body {
         }
         slide.className = 'g-slide';
         slide.appendChild(img);
+        var text = item.caption || item.alt;
+        if (text) {
+          img.alt = '';
+          var cap = document.createElement('span');
+          cap.className = 'g-cap';
+          cap.textContent = text;
+          slide.appendChild(cap);
+        } else {
+          img.alt = 'Foto aus dem Fuchsbau';
+        }
         track.appendChild(slide);
       });
       section.hidden = false;
