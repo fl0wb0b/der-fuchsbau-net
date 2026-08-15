@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FEED_URL: ""          # <-- Behold-Feed-URL hier eintragen
+      GOOGLE_PLACE_ID: ""   # <-- Place-ID des Maps-Eintrags (öffentlich)
+      GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}  # API-Schlüssel: nur im Secrets-Tresor
     steps:
       - uses: actions/checkout@v4
 
@@ -34,17 +36,20 @@ jobs:
       - name: Abhängigkeiten
         run: pip install --quiet requests pillow
 
-      - name: Feed holen und Bilder verarbeiten
+      - name: Instagram-Feed holen und Bilder verarbeiten
         run: python scripts/instagram_sync.py
+
+      - name: Google-Bewertungen holen
+        run: python scripts/reviews_sync.py
 
       - name: Änderungen committen
         run: |
           git config user.name "fuchsbau-sync[bot]"
           git config user.email "actions@users.noreply.github.com"
-          git add -A gallery/
+          git add -A gallery/ reviews.json 2>/dev/null || git add -A gallery/
           if git diff --cached --quiet; then
-            echo "Keine neuen Bilder — kein Commit."
+            echo "Keine Änderungen — kein Commit."
           else
-            git commit -m "Galerie: neue Instagram-Fotos synchronisiert"
+            git commit -m "Sync: Instagram-Fotos / Google-Bewertungen aktualisiert"
             git push
           fi

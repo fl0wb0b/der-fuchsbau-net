@@ -352,6 +352,56 @@ body {
 }
 .gallery__more:hover { color: var(--color-ink); }
 
+
+/* ---- Stimmen · Google-Bewertungen (erscheint erst, wenn reviews.json synchronisiert ist) ---- */
+.voices {
+  max-width: 46rem;
+  padding-inline: var(--page-gutter);
+  margin-bottom: var(--space-2xl);
+}
+.voices h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-xl);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  margin-bottom: var(--space-md);
+}
+.voices__score {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+.voices__num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-lg);
+  line-height: 1;
+}
+.stars {
+  position: relative;
+  font-size: var(--text-md);
+  line-height: 1;
+  letter-spacing: 2px;
+  color: var(--color-rule);
+}
+.stars::before { content: "★★★★★"; }
+.stars__fill {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--color-accent);
+}
+.stars__fill::before { content: "★★★★★"; }
+.voices__meta { color: var(--color-muted); font-size: var(--text-sm); }
+.voice { border-top: var(--rule-hairline); padding-block: var(--space-md); max-width: 58ch; }
+.voice p { color: var(--color-ink-2); }
+.voice figcaption { color: var(--color-muted); font-size: var(--text-sm); margin-top: var(--space-2xs); }
+
 /* ---- Kontakt-CTA am Fuß der Fragen ---- */
 .ask {
   max-width: 46rem;
@@ -554,6 +604,17 @@ body {
     <a class="gallery__more" href="https://www.instagram.com/der_fuchsbau2025/" target="_blank" rel="noopener">Mehr auf Instagram&nbsp;↗</a>
   </section>
 
+  <section class="voices" id="stimmen" hidden>
+    <h2>Das sagen Eltern</h2>
+    <div class="voices__score">
+      <span class="voices__num"></span>
+      <span class="stars" role="img"><span class="stars__fill"></span></span>
+      <span class="voices__meta"></span>
+    </div>
+    <div class="voices__list"></div>
+    <a class="ig-link" href="https://maps.app.goo.gl/oRQpjVbUsBX8zNqx9" target="_blank" rel="noopener">Alle Bewertungen auf Google&nbsp;↗</a>
+  </section>
+
   <section class="ask" aria-label="Kontakt">
     <h2>Noch Fragen?</h2>
     <div class="contact-row">
@@ -655,6 +716,39 @@ body {
       updateButtons();
     })
     .catch(function () { /* keine Galerie — Sektion bleibt unsichtbar */ });
+})();
+
+/* Stimmen: zeigt die vom täglichen Sync abgelegten Google-Bewertungen.
+   Existiert reviews.json (noch) nicht, bleibt die Sektion unsichtbar. */
+(function () {
+  var section = document.getElementById('stimmen');
+  if (!section || !window.fetch) return;
+  fetch('reviews.json')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data || !data.rating || !data.count) return;
+      section.querySelector('.voices__num').textContent =
+        data.rating.toLocaleString('de-DE', { minimumFractionDigits: 1 });
+      var stars = section.querySelector('.stars');
+      stars.setAttribute('aria-label', data.rating.toLocaleString('de-DE') + ' von 5 Sternen');
+      section.querySelector('.stars__fill').style.width = (data.rating / 5 * 100) + '%';
+      section.querySelector('.voices__meta').textContent =
+        'aus ' + data.count + ' Bewertungen auf Google';
+      var list = section.querySelector('.voices__list');
+      (data.items || []).forEach(function (item) {
+        if (!item || !item.text) return;
+        var fig = document.createElement('figure');
+        fig.className = 'voice';
+        var p = document.createElement('p');
+        p.textContent = '\u201E' + item.text + '\u201C';
+        var cap = document.createElement('figcaption');
+        cap.textContent = item.name ? '\u2014 ' + item.name : '\u2014 Google-Rezension';
+        fig.appendChild(p); fig.appendChild(cap);
+        list.appendChild(fig);
+      });
+      section.hidden = false;
+    })
+    .catch(function () { /* keine Bewertungen — Sektion bleibt unsichtbar */ });
 })();
 </script>
 
