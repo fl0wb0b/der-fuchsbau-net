@@ -84,4 +84,6 @@
   --radius-soft: 12px;
 
   --page-gutter: clamp(1.25rem, 5vw, 3.5rem);
+  --content-max: 68rem;  /* Breite der zentrierten Inhaltsspalte */
+  --text-col:    46rem;  /* Lesespalte innerhalb der Inhaltsspalte */
 }
