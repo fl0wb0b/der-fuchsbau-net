@@ -112,6 +112,18 @@ body {
   .slab-cta { margin-left: auto; }
 }
 
+/* ---- Eingangs-Sequenz — eine orchestrierte Enthüllung, danach steht die Seite ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise 480ms var(--ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+@keyframes rise {
+  to { opacity: 1; transform: none; }
+}
+.fox-wrap.reveal { transform: translateY(10px) scale(0.96); }
+
 /* ---- Hero · H9 custom illustration centerpiece ---- */
 .hero-art {
   display: grid;
@@ -324,12 +336,13 @@ body {
 <main>
   <section class="hero-art">
     <div>
-      <h1>Ein Bau für <span class="u-accent">kleine Füchse</span>.</h1>
-      <p class="lede">Der Fuchsbau ist eine Kindertagespflege für junge Kinder
+      <h1 class="reveal" style="--i: 0">Ein Bau für <span class="u-accent">kleine Füchse</span>.</h1>
+      <p class="lede reveal" style="--i: 1">Der Fuchsbau ist eine Kindertagespflege für junge Kinder
       in Mücke. Die wichtigsten Antworten stehen hier — alles Weitere
       beantworten wir persönlich auf WhatsApp, das Neueste zeigen wir
       auf Instagram.</p>
     </div>
+    <div class="fox-wrap reveal" style="--i: 2">
     <svg class="fox-mark" viewBox="0 0 240 230" role="img" aria-label="Gezeichneter Fuchskopf">
       <!-- Ohren -->
       <polygon class="f-fur"    points="52,14 98,74 26,88"/>
@@ -346,15 +359,17 @@ body {
       <!-- Nase -->
       <path class="f-ink" d="M 106 152 L 134 152 Q 137 154 134 158 L 124 170 Q 120 174 116 170 L 106 158 Q 103 154 106 152 Z"/>
     </svg>
+    </div>
   </section>
 
   <section class="faq" id="fragen" aria-label="Fragen und Antworten">
     <details open>
       <summary><h2>Was ist der Fuchsbau?</h2><span class="marker" aria-hidden="true">+</span></summary>
       <div class="answer">
-        <p>Eine Kindertagespflege für junge Kinder bei Katharina Klee.
-        Das heißt: Betreuung in kleiner, fester Runde — persönlicher als
-        der große Betrieb, nach §&#8202;43 SGB&#8202;VIII.</p>
+        <p>Eine Kindertagespflege für junge Kinder bei Katharina Klee —
+        mit Pflegeerlaubnis und Zulassung des Jugendamts nach
+        §&#8202;43 SGB&#8202;VIII. Das heißt: Betreuung in kleiner, fester
+        Runde, persönlicher als der große Betrieb.</p>
       </div>
     </details>
     <details>
