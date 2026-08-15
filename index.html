@@ -506,18 +506,20 @@ body {
 .fox-sleeper .p-sleep { animation: pose-sleep 26s linear infinite; }
 .fox-sleeper .p-sit   { opacity: 0; animation: pose-sit 26s linear infinite; }
 .fox-sleeper .p-jump  { opacity: 0; animation: pose-jump 26s linear infinite; }
-.fox-sleeper .p-jump-inner { animation: jump-hop 26s var(--ease-out) infinite; }
+.fox-sleeper .p-jump-inner { transform-box: fill-box; transform-origin: bottom center; animation: jump-hop 26s linear infinite; }
 @keyframes pose-sleep { 0%, 49% { opacity: 1; } 50%, 88% { opacity: 0; } 89%, 100% { opacity: 1; } }
 @keyframes pose-sit   { 0%, 50% { opacity: 0; } 51%, 64% { opacity: 1; } 65%, 100% { opacity: 0; } }
 @keyframes pose-jump  { 0%, 65% { opacity: 0; } 66%, 87% { opacity: 1; } 88%, 100% { opacity: 0; } }
 @keyframes jump-hop {
-  0%, 66% { transform: translateY(0) rotate(0deg); }
-  69%  { transform: translateY(-10px) rotate(-7deg); }
-  72%  { transform: translateY(0) rotate(0deg); }
-  76%  { transform: translateY(-13px) rotate(-9deg); }
-  79.5%{ transform: translateY(0) rotate(0deg); }
-  83%  { transform: translateY(-8px) rotate(-5deg); }
-  86%, 100% { transform: translateY(0) rotate(0deg); }
+  0%, 66% { transform: translateY(0) scaleY(1); animation-timing-function: ease-in-out; }
+  67.2% { transform: translateY(3px) scaleY(0.88); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+  69.5% { transform: translateY(-24px) scaleY(1.06) rotate(-6deg); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
+  71.8% { transform: translateY(2px) scaleY(0.85); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+  74.5% { transform: translateY(-30px) scaleY(1.08) rotate(-8deg); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
+  77.2% { transform: translateY(2px) scaleY(0.85); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+  79.8% { transform: translateY(-18px) scaleY(1.05) rotate(-4deg); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
+  82.2% { transform: translateY(2px) scaleY(0.9); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+  84%, 100% { transform: translateY(0) scaleY(1); }
 }
 @keyframes fox-breathe { from { transform: scaleY(1); } to { transform: scaleY(1.055); } }
 @keyframes fox-earflick {
@@ -761,7 +763,8 @@ body {
     </g>
     <!-- Pose 3: verspielte Hüpfer (Galopp-Silhouette, gedreht und federnd) -->
     <g class="p-jump">
-      <g class="p-jump-inner" transform="translate(2 19) scale(0.46)">
+      <g transform="translate(2 19) scale(0.46)">
+      <g class="p-jump-inner">
         <g class="fr-tail">
           <path class="fr-fur" d="M 114 21 C 128 12 146 5 160 6 C 168 7 171 12 168 16 C 160 26 140 31 126 29 C 118 28 112 25 114 21 Z"/>
           <path class="fr-tip" d="M 152 5 C 160 4 168 8 168 14 C 167 19 160 22 152 21 C 146 19 144 13 146 9 C 148 6 150 5 152 5 Z"/>
@@ -776,6 +779,7 @@ body {
         <path class="fr-tip" d="M 3 21 C 10 23 18 24.5 27 26 C 34 28 40 30 46 31 C 52 29 60 28.5 70 30 C 84 32 98 32 110 30 C 106 33 96 34.5 84 34.5 C 72 34.5 60 33 50 33.5 C 43 34 37 33 31 30.5 C 21 28 9 26 3 23 Z"/>
         <circle class="fr-ink" cx="3.5" cy="19.5" r="2.3"/>
         <circle class="fr-ink" cx="15.5" cy="17" r="2"/>
+      </g>
       </g>
     </g>
   </svg>
