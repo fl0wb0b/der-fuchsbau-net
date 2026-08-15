@@ -82,16 +82,16 @@ body {
   transform: translateX(100vw);
 }
 .fox-runner svg { display: block; width: 100%; height: 100%; overflow: visible; animation: fox-bob 0.28s ease-in-out infinite alternate; }
-.fox-runner .fr-fur  { fill: var(--color-accent); }
-.fox-runner .fr-dark { fill: var(--color-accent-deep); }
-.fox-runner .fr-tip  { fill: var(--color-photo-paper); }
-.fox-runner .fr-ink  { fill: var(--color-ink); }
-.fox-runner .fr-leg  { fill: none; stroke: var(--color-ink); stroke-width: 5; stroke-linecap: round; transform-box: fill-box; }
-.fox-runner .fr-leg-f1 { transform-origin: top right; animation: fox-swing-f 0.28s linear infinite alternate; }
-.fox-runner .fr-leg-f2 { transform-origin: top left;  animation: fox-swing-f 0.28s linear infinite alternate; animation-delay: 0.14s; }
-.fox-runner .fr-leg-h1 { transform-origin: top left;  animation: fox-swing-h 0.28s linear infinite alternate; animation-delay: 0.14s; }
-.fox-runner .fr-leg-h2 { transform-origin: top left;  animation: fox-swing-h 0.28s linear infinite alternate; }
-.fox-runner .fr-tail   { transform-box: fill-box; transform-origin: left center; animation: fox-flutter 0.5s ease-in-out infinite alternate; }
+.fr-fur  { fill: var(--color-accent); }
+.fr-dark { fill: var(--color-accent-deep); }
+.fr-tip  { fill: var(--color-photo-paper); }
+.fr-ink  { fill: var(--color-ink); }
+.fr-leg  { fill: none; stroke: var(--color-ink); stroke-width: 5; stroke-linecap: round; transform-box: fill-box; }
+.fr-leg-f1 { transform-origin: top right; animation: fox-swing-f 0.28s linear infinite alternate; }
+.fr-leg-f2 { transform-origin: top left;  animation: fox-swing-f 0.28s linear infinite alternate; animation-delay: 0.14s; }
+.fr-leg-h1 { transform-origin: top left;  animation: fox-swing-h 0.28s linear infinite alternate; animation-delay: 0.14s; }
+.fr-leg-h2 { transform-origin: top left;  animation: fox-swing-h 0.28s linear infinite alternate; }
+.fr-tail   { transform-box: fill-box; transform-origin: left center; animation: fox-flutter 0.5s ease-in-out infinite alternate; }
 @keyframes fox-cross {
   0%   { transform: translateX(100vw); }
   17%  { transform: translateX(-90px); }
@@ -105,10 +105,10 @@ body {
 /* Echter Laufzyklus via Path-Morphing: die Beinpfade wechseln zwischen
    Streckung und Sammlung — Browser ohne d-Animation behalten das Schwingen */
 @supports (d: path("M 0 0 C 1 1 2 2 3 3")) {
-  .fox-runner .fr-leg-f1 { animation: fox-morph-f1 0.28s linear infinite alternate; }
-  .fox-runner .fr-leg-f2 { animation: fox-morph-f2 0.28s linear infinite alternate; }
-  .fox-runner .fr-leg-h1 { animation: fox-morph-h1 0.28s linear infinite alternate; }
-  .fox-runner .fr-leg-h2 { animation: fox-morph-h2 0.28s linear infinite alternate; }
+  .fr-leg-f1 { animation: fox-morph-f1 0.28s linear infinite alternate; }
+  .fr-leg-f2 { animation: fox-morph-f2 0.28s linear infinite alternate; }
+  .fr-leg-h1 { animation: fox-morph-h1 0.28s linear infinite alternate; }
+  .fr-leg-h2 { animation: fox-morph-h2 0.28s linear infinite alternate; }
   @keyframes fox-morph-f1 { from { d: path("M 44 30 C 36 36 26 41 17 44"); }  to { d: path("M 44 30 C 42 37 44 44 48 49"); } }
   @keyframes fox-morph-f2 { from { d: path("M 48 31 C 47 38 48 44 51 49"); }  to { d: path("M 48 31 C 41 36 32 40 24 42"); } }
   @keyframes fox-morph-h1 { from { d: path("M 106 28 C 116 34 126 39 135 42"); } to { d: path("M 106 28 C 103 35 102 42 104 48"); } }
@@ -468,27 +468,76 @@ body {
 .ask__alt a { color: var(--color-ink-2); text-underline-offset: 0.2em; white-space: nowrap; }
 .ask__alt a:hover { color: var(--color-ink); }
 
-/* ---- Schlafender Fuchs — ruht auf der Footer-Linie (Mittagsschlaf) ---- */
+/* ---- Fuchs-Ecke über dem Footer: schläft, wacht auf, schaut hoch, hüpft ---- */
 .fox-sleeper {
   display: flex;
   justify-content: flex-end;
   padding-inline: var(--page-gutter);
   margin-bottom: -1px;
 }
-.fox-sleeper svg {
-  width: 58px;
-  height: auto;
-  display: block;
-  transform-origin: bottom center;
-  animation: fox-breathe 4s ease-in-out infinite alternate;
-}
+.fox-sleeper svg { width: 58px; height: auto; display: block; overflow: visible; }
 .fox-sleeper .fs-fur  { fill: var(--color-accent); }
 .fox-sleeper .fs-dark { fill: var(--color-accent-deep); }
 .fox-sleeper .fs-tip  { fill: var(--color-photo-paper); }
 .fox-sleeper .fs-ink  { fill: var(--color-ink); }
 .fox-sleeper .fs-line { fill: none; stroke: var(--color-ink); stroke-width: 2; stroke-linecap: round; }
-@keyframes fox-breathe { from { transform: scaleY(1); } to { transform: scaleY(1.035); } }
-@media (prefers-reduced-motion: reduce) { .fox-sleeper svg { animation: none; } }
+.fox-sleeper .fs-body {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: fox-breathe 3.2s ease-in-out infinite alternate;
+}
+.fox-sleeper .fs-ear {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: fox-earflick 6.5s linear infinite;
+}
+.fox-sleeper .fs-z {
+  font-family: var(--font-display);
+  font-weight: 800;
+  fill: var(--color-accent-deep);
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: fox-zzz 3.6s ease-out infinite;
+}
+.fox-sleeper .fs-z2 { animation-delay: 1.2s; }
+.fox-sleeper .fs-z3 { animation-delay: 2.4s; }
+/* Verhaltens-Schleife: 26 s — schlafen, aufwachen + hochschauen, hüpfen, einrollen */
+.fox-sleeper .p-sleep { animation: pose-sleep 26s linear infinite; }
+.fox-sleeper .p-sit   { opacity: 0; animation: pose-sit 26s linear infinite; }
+.fox-sleeper .p-jump  { opacity: 0; animation: pose-jump 26s linear infinite; }
+.fox-sleeper .p-jump-inner { animation: jump-hop 26s var(--ease-out) infinite; }
+@keyframes pose-sleep { 0%, 49% { opacity: 1; } 50%, 88% { opacity: 0; } 89%, 100% { opacity: 1; } }
+@keyframes pose-sit   { 0%, 50% { opacity: 0; } 51%, 64% { opacity: 1; } 65%, 100% { opacity: 0; } }
+@keyframes pose-jump  { 0%, 65% { opacity: 0; } 66%, 87% { opacity: 1; } 88%, 100% { opacity: 0; } }
+@keyframes jump-hop {
+  0%, 66% { transform: translateY(0) rotate(0deg); }
+  69%  { transform: translateY(-10px) rotate(-7deg); }
+  72%  { transform: translateY(0) rotate(0deg); }
+  76%  { transform: translateY(-13px) rotate(-9deg); }
+  79.5%{ transform: translateY(0) rotate(0deg); }
+  83%  { transform: translateY(-8px) rotate(-5deg); }
+  86%, 100% { transform: translateY(0) rotate(0deg); }
+}
+@keyframes fox-breathe { from { transform: scaleY(1); } to { transform: scaleY(1.055); } }
+@keyframes fox-earflick {
+  0%, 86%, 94%, 100% { transform: rotate(0deg); }
+  88% { transform: rotate(-10deg); }
+  91% { transform: rotate(7deg); }
+}
+@keyframes fox-zzz {
+  0%   { opacity: 0; transform: translate(0, 2px) scale(0.7); }
+  18%  { opacity: 1; }
+  70%  { opacity: 0.9; }
+  100% { opacity: 0; transform: translate(4px, -11px) scale(1.15); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fox-sleeper .fs-body, .fox-sleeper .fs-ear, .fox-sleeper .p-sleep,
+  .fox-sleeper .p-sit, .fox-sleeper .p-jump, .fox-sleeper .p-jump-inner { animation: none; }
+  .fox-sleeper .fs-z { animation: none; opacity: 0; }
+  .fox-sleeper .p-sit, .fox-sleeper .p-jump { display: none; }
+  .fox-sleeper .p-sleep { opacity: 1; }
+}
 
 /* ---- Footer · Ft8 marquee scroll ---- */
 .foot-marquee { overflow: hidden; border-top: var(--rule-heavy); }
@@ -673,17 +722,62 @@ body {
 </main>
 
 <div class="fox-sleeper" aria-hidden="true">
-  <svg viewBox="0 0 84 46" xmlns="http://www.w3.org/2000/svg">
-    <ellipse class="fs-fur" cx="44" cy="29" rx="31" ry="16"/>
-    <path class="fs-fur" d="M 72 32 C 70 41 56 46 40 45 C 26 44 15 40 13 33 C 20 40 38 42 52 40 C 62 38 69 36 72 32 Z"/>
-    <path class="fs-dark" d="M 14 33 C 20 39 34 42 46 41 C 36 43 22 41 15 36 Z" opacity="0.35"/>
-    <path class="fs-tip" d="M 13 33 C 14 38 20 41 27 41 C 23 36 20 33 19 29 C 16 30 13 31 13 33 Z"/>
-    <circle class="fs-fur" cx="21" cy="23" r="12"/>
-    <polygon class="fs-fur" points="24,13 30,3 34,14"/>
-    <polygon class="fs-dark" points="26.5,11 30,5.5 32.5,12"/>
-    <path class="fs-tip" d="M 10 26 C 13 23 18 22 21 24 C 21 29 16 32 11 30 C 9.5 29 9.5 27 10 26 Z"/>
-    <path class="fs-line" d="M 16 21 Q 19 24 23 21"/>
-    <circle class="fs-ink" cx="10" cy="27" r="2"/>
+  <svg viewBox="0 -18 84 64" xmlns="http://www.w3.org/2000/svg">
+    <!-- Pose 1: schlafen -->
+    <g class="p-sleep">
+      <g class="fs-body">
+        <ellipse class="fs-fur" cx="44" cy="29" rx="31" ry="16"/>
+        <path class="fs-fur" d="M 72 32 C 70 41 56 46 40 45 C 26 44 15 40 13 33 C 20 40 38 42 52 40 C 62 38 69 36 72 32 Z"/>
+        <path class="fs-dark" d="M 14 33 C 20 39 34 42 46 41 C 36 43 22 41 15 36 Z" opacity="0.35"/>
+        <path class="fs-tip" d="M 13 33 C 14 38 20 41 27 41 C 23 36 20 33 19 29 C 16 30 13 31 13 33 Z"/>
+        <circle class="fs-fur" cx="21" cy="23" r="12"/>
+        <g class="fs-ear">
+          <polygon class="fs-fur" points="24,13 30,3 34,14"/>
+          <polygon class="fs-dark" points="26.5,11 30,5.5 32.5,12"/>
+        </g>
+        <path class="fs-tip" d="M 10 26 C 13 23 18 22 21 24 C 21 29 16 32 11 30 C 9.5 29 9.5 27 10 26 Z"/>
+        <path class="fs-line" d="M 16 21 Q 19 24 23 21"/>
+        <circle class="fs-ink" cx="10" cy="27" r="2"/>
+      </g>
+      <text class="fs-z fs-z1" x="30" y="2"  font-size="8">z</text>
+      <text class="fs-z fs-z2" x="37" y="-4" font-size="10">z</text>
+      <text class="fs-z fs-z3" x="45" y="-9" font-size="12">Z</text>
+    </g>
+    <!-- Pose 2: aufgewacht, schaut nach oben -->
+    <g class="p-sit">
+      <path class="fs-fur" d="M 54 45 C 64 44 69 37 66 28 C 73 37 70 46 56 46 L 24 46 C 20 46 18 44 20 43 C 30 40 46 41 54 45 Z"/>
+      <circle class="fs-tip" cx="23" cy="44.5" r="3.2"/>
+      <path class="fs-fur" d="M 30 10 C 45 8 54 20 56 45 L 21 45 C 19 30 21 13 30 10 Z"/>
+      <path class="fs-tip" d="M 29 18 C 35 17 39 25 39 34 C 39 41 34 45 28 45 L 25 45 C 24 34 25 24 29 18 Z"/>
+      <circle class="fs-fur" cx="28" cy="7" r="10"/>
+      <polygon class="fs-fur" points="23,1 29,-13 35,0"/>
+      <polygon class="fs-dark" points="25.8,-2.5 29,-9.5 31.8,-2"/>
+      <polygon class="fs-fur" points="36,2 43,-10 47,3"/>
+      <polygon class="fs-dark" points="38.6,-1 42.5,-7 44.4,-0.5"/>
+      <polygon class="fs-fur" points="13,0 27,1 25,10"/>
+      <polygon class="fs-tip" points="16.5,4.5 25,5 23.5,9.5"/>
+      <circle class="fs-ink" cx="13.5" cy="0.5" r="1.8"/>
+      <circle class="fs-ink" cx="23.5" cy="3" r="2"/>
+    </g>
+    <!-- Pose 3: verspielte Hüpfer (Galopp-Silhouette, gedreht und federnd) -->
+    <g class="p-jump">
+      <g class="p-jump-inner" transform="translate(2 19) scale(0.46)">
+        <g class="fr-tail">
+          <path class="fr-fur" d="M 114 21 C 128 12 146 5 160 6 C 168 7 171 12 168 16 C 160 26 140 31 126 29 C 118 28 112 25 114 21 Z"/>
+          <path class="fr-tip" d="M 152 5 C 160 4 168 8 168 14 C 167 19 160 22 152 21 C 146 19 144 13 146 9 C 148 6 150 5 152 5 Z"/>
+        </g>
+        <path class="fr-leg fr-leg-f1" d="M 44 30 C 36 36 26 41 17 44"/>
+        <path class="fr-leg fr-leg-f2" d="M 48 31 C 47 38 48 44 51 49"/>
+        <path class="fr-leg fr-leg-h1" d="M 106 28 C 116 34 126 39 135 42"/>
+        <path class="fr-leg fr-leg-h2" d="M 100 30 C 99 37 100 44 103 49"/>
+        <path class="fr-fur" d="M 2 20 C 6 17 10 15.5 15 14.5 C 18 12 21 10.5 25 10 C 34 8 52 11 66 14 C 80 16 92 14 102 13 C 110 13 116 16 117 21 C 118 26 114 29 110 30 C 96 32 82 32 70 30 C 60 28.5 52 29 46 31 C 41 32.5 36 31 30 28 C 22 26 12 25 5 23 C 3 22 2 21 2 20 Z"/>
+        <polygon class="fr-fur" points="24,11 35,0 40,12"/>
+        <polygon class="fr-dark" points="28.5,9 34.5,3 37.5,10"/>
+        <path class="fr-tip" d="M 3 21 C 10 23 18 24.5 27 26 C 34 28 40 30 46 31 C 52 29 60 28.5 70 30 C 84 32 98 32 110 30 C 106 33 96 34.5 84 34.5 C 72 34.5 60 33 50 33.5 C 43 34 37 33 31 30.5 C 21 28 9 26 3 23 Z"/>
+        <circle class="fr-ink" cx="3.5" cy="19.5" r="2.3"/>
+        <circle class="fr-ink" cx="15.5" cy="17" r="2"/>
+      </g>
+    </g>
   </svg>
 </div>
 
