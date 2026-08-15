@@ -7,8 +7,11 @@
 <meta name="description" content="Der Fuchsbau — Kindertagespflege für junge Kinder in Mücke bei Katharina Klee. Kontakt per WhatsApp, Impressionen auf Instagram.">
 <meta property="og:title" content="Der Fuchsbau · Kindertagespflege in Mücke">
 <meta property="og:description" content="Kindertagespflege für junge Kinder in Mücke bei Katharina Klee. Kontakt per WhatsApp, Impressionen auf Instagram.">
+<meta property="og:image" content="https://www.der-fuchsbau.net/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="theme-color" content="#F7EFE2">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦊</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 240 230%22><polygon fill=%22%23D4622A%22 points=%2252,14 98,74 26,88%22/><polygon fill=%22%23D4622A%22 points=%22188,14 214,88 142,74%22/><polygon fill=%22%238B3A1A%22 points=%2260,32 88,70 46,78%22/><polygon fill=%22%238B3A1A%22 points=%22180,32 194,78 152,70%22/><path fill=%22%23D4622A%22 d=%22M26 88 L214 88 Q216 150 120 212 Q24 150 26 88 Z%22/><path fill=%22%23FBF3EA%22 d=%22M120 212 Q66 172 80 122 L120 144 L160 122 Q174 172 120 212 Z%22/><circle fill=%22%232C1F14%22 cx=%2286%22 cy=%22112%22 r=%227%22/><circle fill=%22%232C1F14%22 cx=%22154%22 cy=%22112%22 r=%227%22/><path fill=%22%232C1F14%22 d=%22M106 152 L134 152 Q137 154 134 158 L124 170 Q120 174 116 170 L106 158 Q103 154 106 152 Z%22/></svg>">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -26,7 +29,7 @@
   "email": "info@der-fuchsbau.net",
   "areaServed": "Mücke und Umgebung",
   "sameAs": ["https://www.instagram.com/der_fuchsbau2025/"],
-  "hasMap": "https://share.google/xQpUhlmY3dIEI0mPI",
+  "hasMap": "https://maps.app.goo.gl/oRQpjVbUsBX8zNqx9",
   "url": "https://www.der-fuchsbau.net/"
 }
 </script>
@@ -156,14 +159,17 @@ body {
   max-width: 46ch;
   color: var(--color-ink-2);
 }
-.fox-mark { width: min(100%, 21rem); height: auto; margin-inline: auto; transform: rotate(-4deg); }
-.fox-mark .f-fur    { fill: var(--color-accent); }
-.fox-mark .f-fur-dk { fill: var(--color-accent-deep); }
-.fox-mark .f-cream  { fill: var(--color-paper); }
-.fox-mark .f-ink    { fill: var(--color-ink); }
+.logo-mark {
+  display: block;
+  width: min(100%, 24rem);
+  height: auto;
+  margin-inline: auto;
+  transform: rotate(-2deg);
+  filter: var(--shadow-drop);
+}
 @media (max-width: 60rem) {
   .hero-art { grid-template-columns: minmax(0, 1fr); padding-block: var(--space-xl) var(--space-2xl); }
-  .fox-mark { width: min(58%, 15rem); }
+  .logo-mark { width: min(74%, 18rem); }
 }
 
 /* ---- FAQ · das ehrliche Interview ---- */
@@ -343,22 +349,7 @@ body {
       auf Instagram.</p>
     </div>
     <div class="fox-wrap reveal" style="--i: 2">
-    <svg class="fox-mark" viewBox="0 0 240 230" role="img" aria-label="Gezeichneter Fuchskopf">
-      <!-- Ohren -->
-      <polygon class="f-fur"    points="52,14 98,74 26,88"/>
-      <polygon class="f-fur"    points="188,14 214,88 142,74"/>
-      <polygon class="f-fur-dk" points="60,32 88,70 46,78"/>
-      <polygon class="f-fur-dk" points="180,32 194,78 152,70"/>
-      <!-- Kopf -->
-      <path class="f-fur" d="M 26 88 L 214 88 Q 216 150 120 212 Q 24 150 26 88 Z"/>
-      <!-- Wangen / Schnauze -->
-      <path class="f-cream" d="M 120 212 Q 66 172 80 122 L 120 144 L 160 122 Q 174 172 120 212 Z"/>
-      <!-- Augen -->
-      <circle class="f-ink" cx="86" cy="112" r="7"/>
-      <circle class="f-ink" cx="154" cy="112" r="7"/>
-      <!-- Nase -->
-      <path class="f-ink" d="M 106 152 L 134 152 Q 137 154 134 158 L 124 170 Q 120 174 116 170 L 106 158 Q 103 154 106 152 Z"/>
-    </svg>
+    <img class="logo-mark" src="logo.png" alt="Logo: Der Fuchsbau — eine Fuchsmama mit zwei Jungen, umgeben von Glücksklee" width="900" height="734" fetchpriority="high" decoding="async">
     </div>
   </section>
 
@@ -377,7 +368,7 @@ body {
       <div class="answer">
         <p>Im Herrmannsbergweg&nbsp;16 in 35325 Mücke — für Familien aus
         Mücke und der Umgebung.<br>
-        <a href="https://share.google/xQpUhlmY3dIEI0mPI" target="_blank" rel="noopener">Auf Google Maps öffnen&nbsp;↗</a></p>
+        <a href="https://maps.app.goo.gl/oRQpjVbUsBX8zNqx9" target="_blank" rel="noopener">Auf Google Maps öffnen&nbsp;↗</a></p>
       </div>
     </details>
     <details>
@@ -407,7 +398,7 @@ body {
         Schreibt uns auf WhatsApp
       </a>
       <a class="ig-link" href="https://www.instagram.com/der_fuchsbau2025/" target="_blank" rel="noopener">Instagram&nbsp;↗</a>
-      <a class="ig-link" href="https://share.google/xQpUhlmY3dIEI0mPI" target="_blank" rel="noopener">Google&nbsp;Maps&nbsp;↗</a>
+      <a class="ig-link" href="https://maps.app.goo.gl/oRQpjVbUsBX8zNqx9" target="_blank" rel="noopener">Google&nbsp;Maps&nbsp;↗</a>
     </div>
   </section>
 </main>

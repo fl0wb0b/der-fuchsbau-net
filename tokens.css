@@ -2,7 +2,7 @@
 /* Hallmark · macrostructure: Conversational FAQ (H9 hero opener) · H9 knobs: build=Tier-B hand-SVG, animation=none, scale=dominant
  * theme: custom · vibe: "Kindergarten-Poster, warm, taktil, Fuchs" · paper: oklch(96% 0.016 75) · accent: oklch(62.7% 0.159 44)
  * display: Bricolage Grotesque 800 · body: Geist · axes: light / display-heavy / warm · fonts: self-hosted (DSGVO)
- * genre: playful · nav: N7 · footer: Ft8 · enrichment: E-custom Tier-B SVG · studied: no · context: user-provided
+ * genre: playful · nav: N7 · footer: Ft8 · enrichment: offizielles Logo (freigestellt) · studied: no · context: user-provided
  * rotation: differs from Letter-build on display style + macrostructure + nav + footer + enrichment
  * contrast: pass (40–41) · slop: pass (42–45) · honest: pass (46) · chrome: pass (47) · tokens: pass (48)
  * responsive: pass (49) · icons: pass (30) · mobile: pass (34, 49, 50–57) — verifiziert bei 320/375/414/768/1280 px
@@ -71,6 +71,7 @@
   --rule-heavy: 2px solid var(--color-ink);
   --rule-hairline: 1px solid var(--color-rule);
   --shadow-whisper: 0 1px 2px oklch(24% 0.024 55 / 0.08);
+  --shadow-drop: drop-shadow(0 1px 2px oklch(24% 0.024 55 / 0.14));
   --radius-soft: 12px;
 
   --page-gutter: clamp(1.25rem, 5vw, 3.5rem);
