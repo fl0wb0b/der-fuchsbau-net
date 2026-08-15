@@ -229,6 +229,78 @@ body {
   to   { opacity: 1; transform: none; }
 }
 
+/* ---- Einblicke · Foto-Galerie (erscheint erst, wenn gallery/ synchronisiert ist) ---- */
+.gallery {
+  max-width: 68rem;
+  padding-inline: var(--page-gutter);
+  margin-bottom: var(--space-2xl);
+}
+.gallery__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+.gallery__head h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-xl);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.gallery__nav { margin-left: auto; display: flex; gap: var(--space-xs); }
+.g-btn {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border: var(--rule-heavy);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--dur-short) var(--ease-out);
+}
+.g-btn:hover { background: var(--color-paper-2); }
+.g-btn:active { transform: translateY(1px); }
+.g-btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
+@media (max-width: 40rem) { .gallery__nav { display: none; } } /* mobil wird gewischt */
+.g-track {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-block: var(--space-2xs);
+}
+.g-track::-webkit-scrollbar { display: none; }
+.g-slide {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  border: var(--rule-heavy);
+  background: var(--color-photo-paper);
+  padding: var(--space-2xs);
+}
+.g-slide img {
+  display: block;
+  height: clamp(200px, 40vw, 320px);
+  width: auto;
+}
+.gallery__more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: var(--space-sm);
+  color: var(--color-accent-deep);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+  white-space: nowrap;
+}
+.gallery__more:hover { color: var(--color-ink); }
+
 /* ---- Kontakt-CTA am Fuß der Fragen ---- */
 .ask {
   max-width: 46rem;
@@ -388,6 +460,18 @@ body {
     </details>
   </section>
 
+  <section class="gallery" id="einblicke" hidden>
+    <div class="gallery__head">
+      <h2>Einblicke</h2>
+      <div class="gallery__nav">
+        <button class="g-btn" type="button" data-dir="-1" aria-label="Vorherige Fotos">←</button>
+        <button class="g-btn" type="button" data-dir="1" aria-label="Weitere Fotos">→</button>
+      </div>
+    </div>
+    <div class="g-track" tabindex="0" role="region" aria-label="Fotos aus dem Fuchsbau — mit Pfeiltasten oder Wischen blättern"></div>
+    <a class="gallery__more" href="https://www.instagram.com/der_fuchsbau2025/" target="_blank" rel="noopener">Mehr auf Instagram&nbsp;↗</a>
+  </section>
+
   <section class="ask" aria-label="Kontakt">
     <h2>Noch Fragen?</h2>
     <div class="contact-row">
@@ -414,6 +498,63 @@ body {
     <a href="impressum.html">Impressum &amp; Datenschutz</a>
   </div>
 </footer>
+
+<script>
+/* Einblicke-Galerie: zeigt lokale, vom täglichen Sync abgelegte Fotos.
+   Existiert gallery/manifest.json (noch) nicht, bleibt die Sektion
+   unsichtbar — die Seite funktioniert vollständig ohne JavaScript. */
+(function () {
+  var section = document.getElementById('einblicke');
+  if (!section || !window.fetch) return;
+  fetch('gallery/manifest.json')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data || !Array.isArray(data.items) || data.items.length === 0) return;
+      var track = section.querySelector('.g-track');
+      data.items.forEach(function (item) {
+        if (!item || !item.file) return;
+        var img = document.createElement('img');
+        img.src = 'gallery/' + item.file;
+        img.alt = item.alt || 'Foto aus dem Fuchsbau';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        var slide;
+        if (item.link && /^https:\/\/(www\.)?instagram\.com\//.test(item.link)) {
+          slide = document.createElement('a');
+          slide.href = item.link;
+          slide.target = '_blank';
+          slide.rel = 'noopener';
+        } else {
+          slide = document.createElement('div');
+        }
+        slide.className = 'g-slide';
+        slide.appendChild(img);
+        track.appendChild(slide);
+      });
+      section.hidden = false;
+
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var buttons = section.querySelectorAll('.g-btn');
+      function updateButtons() {
+        var max = track.scrollWidth - track.clientWidth - 1;
+        buttons[0].setAttribute('aria-disabled', track.scrollLeft <= 0);
+        buttons[1].setAttribute('aria-disabled', track.scrollLeft >= max);
+      }
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (btn.getAttribute('aria-disabled') === 'true') return;
+          track.scrollBy({
+            left: btn.dataset.dir * track.clientWidth * 0.8,
+            behavior: prefersReduced ? 'auto' : 'smooth'
+          });
+        });
+      });
+      track.addEventListener('scroll', updateButtons, { passive: true });
+      updateButtons();
+    })
+    .catch(function () { /* keine Galerie — Sektion bleibt unsichtbar */ });
+})();
+</script>
 
 </body>
 </html>
