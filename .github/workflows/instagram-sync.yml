@@ -23,7 +23,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     env:
-      FEED_URL: ""          # <-- Behold-Feed-URL hier eintragen
+      FEED_URL: "https://feeds.behold.so/LgF2Ep66rtknBcqlYMEZ"
       GOOGLE_PLACE_ID: ""   # <-- Place-ID des Maps-Eintrags (öffentlich)
       GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}  # API-Schlüssel: nur im Secrets-Tresor
     steps:
