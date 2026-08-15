@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Impressum · Der Fuchsbau</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 <style>
 :root{
   --fox:#D4622A;--fox-dk:#8B3A1A;--fox-lt:#F2A96E;
@@ -13,20 +13,20 @@
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--bark);min-height:100vh}
+body{font-family:var(--font-body);background:var(--cream);color:var(--bark);min-height:100vh}
 
 /* NAV */
 nav{background:rgba(251,246,240,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(44,31,20,.07);padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--bark)}
 .nav-brand span{font-size:1.6rem}
-.nav-brand strong{font-family:'Fraunces',serif;font-size:1.1rem}
+.nav-brand strong{font-family:var(--font-display);font-size:1.1rem}
 .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--mid);font-size:.88rem;font-weight:500;padding:8px 16px;border-radius:50px;border:1.5px solid var(--offwhite);transition:all .2s}
 .back-link:hover{border-color:var(--fox-lt);color:var(--fox)}
 
 /* HERO */
 .imp-hero{background:linear-gradient(150deg,#2c1a0e,#1e2c1a);padding:80px 24px 60px;text-align:center}
 .imp-hero .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--fox-lt);margin-bottom:14px}
-.imp-hero h1{font-family:'Fraunces',serif;font-size:clamp(2.2rem,5vw,3.5rem);color:white;margin-bottom:14px}
+.imp-hero h1{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.5rem);color:white;margin-bottom:14px}
 .imp-hero p{color:rgba(255,255,255,.45);font-size:.95rem;font-weight:300}
 .fox-illo{font-size:4rem;margin-bottom:20px;display:block;filter:drop-shadow(0 8px 24px rgba(212,98,42,.4))}
 
@@ -35,7 +35,7 @@ nav{background:rgba(251,246,240,.95);backdrop-filter:blur(12px);border-bottom:1p
 
 /* Section */
 .imp-section{margin-bottom:48px}
-.imp-section-title{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--bark);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--offwhite);display:flex;align-items:center;gap:10px}
+.imp-section-title{font-family:var(--font-display);font-size:1.4rem;color:var(--bark);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--offwhite);display:flex;align-items:center;gap:10px}
 .imp-section-title .dot{width:8px;height:8px;border-radius:50%;background:var(--fox);flex-shrink:0}
 
 /* Cards grid */
@@ -84,47 +84,43 @@ footer strong{color:rgba(255,255,255,.6)}
   <span class="fox-illo">🦊</span>
   <p class="eyebrow">Rechtliche Informationen</p>
   <h1>Impressum & Datenschutz</h1>
-  <p>Angaben gemäß §5 TMG · Kindertagespflege „Der Fuchsbau"</p>
+  <p>Angaben gemäß §5 DDG · Kindertagespflege „Der Fuchsbau"</p>
 </div>
 
 <!-- BODY -->
 <div class="imp-body">
 
-  <!-- WARNING -->
-  <div class="imp-warn">
-    Bitte alle Angaben in <strong>[eckigen Klammern]</strong> durch deine echten Daten ersetzen, bevor du die Website veröffentlichst!
-  </div>
-
   <!-- ANBIETER -->
   <div class="imp-section">
-    <h2 class="imp-section-title"><span class="dot"></span>Angaben gemäß §5 TMG</h2>
+    <h2 class="imp-section-title"><span class="dot"></span>Angaben gemäß §5 DDG (Digitale-Dienste-Gesetz)</h2>
     <div class="imp-grid">
       <div class="imp-card">
         <h4>Anbieterin</h4>
         <address>
-          <strong>[Vorname Nachname]</strong><br>
+          <strong>Katharina Klee</strong><br>
           Kindertagespflege „Der Fuchsbau"<br>
-          [Straße und Hausnummer]<br>
-          [PLZ] Hungen<br>
+          Herrmannsbergweg 16<br>
+          35325 Mücke<br>
           Deutschland
         </address>
       </div>
       <div class="imp-card">
         <h4>Kontakt</h4>
         <p>
-          Telefon: <a href="tel:[Telefonnummer]">[Telefonnummer]</a><br>
-          E-Mail: <a href="mailto:[E-Mail-Adresse]">[E-Mail-Adresse]</a><br>
-          WhatsApp: über die Schaltfläche auf der Startseite
+          Telefon: <a href="tel:+491627820602">0162&nbsp;7820602</a><br>
+          E-Mail: <a href="mailto:info@der-fuchsbau.net">info@der-fuchsbau.net</a><br>
+          WhatsApp: über die Schaltfläche auf der Startseite<br>
+          Instagram: <a href="https://www.instagram.com/der_fuchsbau2025/" target="_blank" rel="noopener">@der_fuchsbau2025</a>
         </p>
       </div>
       <div class="imp-card">
         <h4>Aufsichtsbehörde</h4>
         <p>
           Erlaubnis zur Kindertagespflege nach §43 SGB VIII erteilt durch:<br><br>
-          <strong>Jugendamt des Landkreises Gießen</strong><br>
-          Riversplatz 1–9<br>
-          35394 Gießen<br>
-          <a href="https://www.lkgi.de" target="_blank" rel="noopener">www.lkgi.de</a>
+          <strong>Jugendamt des Vogelsbergkreises</strong><br>
+          Goldhelg 20<br>
+          36341 Lauterbach (Hessen)<br>
+          <a href="https://www.vogelsbergkreis.de" target="_blank" rel="noopener">www.vogelsbergkreis.de</a>
         </p>
       </div>
       <div class="imp-card">
@@ -133,7 +129,16 @@ footer strong{color:rgba(255,255,255,.6)}
           Tagesmutter (Kindertagespflegeperson)<br>
           Zulassung gemäß §43 SGB VIII<br>
           Erteilt durch das Jugendamt<br>
-          des Landkreises Gießen, Deutschland
+          des Vogelsbergkreises, Deutschland
+        </p>
+      </div>
+      <div class="imp-card">
+        <h4>Umsatzsteuer</h4>
+        <p>
+          Keine Umsatzsteuer-ID —<br>
+          es wird keine Umsatzsteuer erhoben<br>
+          (teilselbständige Tätigkeit in der<br>
+          Kindertagespflege)
         </p>
       </div>
     </div>
@@ -144,7 +149,7 @@ footer strong{color:rgba(255,255,255,.6)}
     <h2 class="imp-section-title"><span class="dot"></span>Haftungsausschluss</h2>
     <div class="imp-prose">
       <h4>Haftung für Inhalte</h4>
-      <p>Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Als Diensteanbieterin bin ich gemäß §7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG bin ich als Diensteanbieterin jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+      <p>Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Als Diensteanbieterin bin ich für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Ich bin jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
     </div>
     <div class="imp-prose">
       <h4>Haftung für Links</h4>
@@ -163,8 +168,9 @@ footer strong{color:rgba(255,255,255,.6)}
     <div class="imp-prose">
       <h4>1. Verantwortliche Stelle</h4>
       <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br>
-      [Vorname Nachname], [Straße und Hausnummer], [PLZ] Hungen<br>
-      E-Mail: <a href="mailto:[E-Mail-Adresse]">[E-Mail-Adresse]</a></p>
+      Katharina Klee, Herrmannsbergweg 16, 35325 Mücke<br>
+      E-Mail: <a href="mailto:info@der-fuchsbau.net">info@der-fuchsbau.net</a> ·
+      Telefon: <a href="tel:+491627820602">0162&nbsp;7820602</a></p>
     </div>
 
     <div class="imp-prose">
@@ -187,7 +193,7 @@ footer strong{color:rgba(255,255,255,.6)}
 
     <div class="imp-prose">
       <h4>5. Deine Rechte</h4>
-      <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch. Wende dich dazu an: <a href="mailto:[E-Mail-Adresse]">[E-Mail-Adresse]</a></p>
+      <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch. Wende dich dazu an <a href="mailto:info@der-fuchsbau.net">info@der-fuchsbau.net</a> oder an die oben genannte Anschrift.</p>
       <p>Du hast außerdem das Recht, dich bei der zuständigen Datenschutz-Aufsichtsbehörde zu beschweren:<br>
       <strong>Der Hessische Beauftragte für Datenschutz und Informationsfreiheit</strong><br>
       Postfach 3163 · 65021 Wiesbaden · <a href="https://datenschutz.hessen.de" target="_blank" rel="noopener">datenschutz.hessen.de</a></p>
@@ -208,7 +214,7 @@ footer strong{color:rgba(255,255,255,.6)}
 </div>
 
 <footer>
-  <p><strong>Der Fuchsbau</strong> · Kindertagespflege nach §43 SGB VIII · Hungen, Hessen</p>
+  <p><strong>Der Fuchsbau</strong> · Kindertagespflege nach §43 SGB VIII · Mücke, Hessen</p>
   <p><a href="index.html">← Zurück zur Startseite</a></p>
 </footer>
 

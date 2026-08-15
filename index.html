@@ -2,192 +2,427 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Der Fuchsbau · Kindertagespflege</title>
-<meta name="description" content="Der Fuchsbau – liebevolle Kindertagespflege in Hungen. Wir sind bald für euch da.">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Der Fuchsbau · Kindertagespflege in Mücke</title>
+<meta name="description" content="Der Fuchsbau — Kindertagespflege für junge Kinder in Mücke bei Katharina Klee. Kontakt per WhatsApp, Impressionen auf Instagram.">
+<meta property="og:title" content="Der Fuchsbau · Kindertagespflege in Mücke">
+<meta property="og:description" content="Kindertagespflege für junge Kinder in Mücke bei Katharina Klee. Kontakt per WhatsApp, Impressionen auf Instagram.">
+<meta name="theme-color" content="#F7EFE2">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦊</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ChildCare",
+  "name": "Der Fuchsbau — Kindertagespflege",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Herrmannsbergweg 16",
+    "postalCode": "35325",
+    "addressLocality": "Mücke",
+    "addressRegion": "Hessen",
+    "addressCountry": "DE"
+  },
+  "telephone": "+491627820602",
+  "email": "info@der-fuchsbau.net",
+  "areaServed": "Mücke und Umgebung",
+  "sameAs": ["https://www.instagram.com/der_fuchsbau2025/"],
+  "hasMap": "https://share.google/xQpUhlmY3dIEI0mPI",
+  "url": "https://www.der-fuchsbau.net/"
+}
+</script>
+<link rel="preload" href="fonts/BricolageGrotesque-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Geist-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="tokens.css">
 <style>
-  :root {
-    --fox:      #D4622A;
-    --fox-dk:   #8B3A1A;
-    --fox-lt:   #F2A96E;
-    --fox-pale: #FEF4EC;
-    --cream:    #FBF7F2;
-    --bark:     #2C1F14;
-    --mid:      #7A6050;
-    --light:    #B8A090;
-    --border:   rgba(44,31,20,.1);
+/* Hallmark · macrostructure: Conversational FAQ · theme: custom (Fuchs-Poster) — Tokens in tokens.css */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { overflow-x: clip; }
+body {
+  overflow-x: clip;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection { background: var(--color-accent-deep); color: var(--color-paper); }
+
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+
+/* ---- Nav · N7 brutal slab (rund verboten, Kante ist die Stimme) ---- */
+.nav-slab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-sm) var(--page-gutter);
+  border-bottom: var(--rule-heavy);
+  background: var(--color-paper);
+}
+.slab-mark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-md);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+.slab-nav { margin-left: auto; }
+.slab-nav ul { display: flex; gap: var(--space-lg); list-style: none; }
+.slab-nav a {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-ink);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.slab-nav a:hover { color: var(--color-accent-deep); }
+.slab-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-xs) var(--space-md);
+  background: var(--color-whatsapp);
+  border: var(--rule-heavy);
+  color: var(--color-ink);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+  transition: background-color var(--dur-short) var(--ease-out);
+}
+.slab-cta:hover { background: var(--color-whatsapp-dn); }
+.slab-cta:active { transform: translateY(1px); }
+@media (max-width: 40rem) {
+  .slab-nav { display: none; } /* Fragen stehen direkt darunter, Instagram im Kontaktblock */
+  .slab-cta { margin-left: auto; }
+}
+
+/* ---- Eingangs-Sequenz — eine orchestrierte Enthüllung, danach steht die Seite ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise 480ms var(--ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+@keyframes rise {
+  to { opacity: 1; transform: none; }
+}
+.fox-wrap.reveal { transform: translateY(10px) scale(0.96); }
+
+/* ---- Hero · H9 custom illustration centerpiece ---- */
+.hero-art {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: var(--space-xl);
+  align-items: center;
+  padding: var(--space-2xl) var(--page-gutter) var(--space-3xl);
+  max-width: 68rem;
+}
+.hero-art h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-display);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  margin-bottom: var(--space-lg);
+}
+.hero-art h1 .u-accent {
+  color: var(--color-accent-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 4px;
+  text-underline-offset: 0.12em;
+}
+.hero-art .lede {
+  font-size: var(--text-md);
+  line-height: 1.5;
+  max-width: 46ch;
+  color: var(--color-ink-2);
+}
+.fox-mark { width: min(100%, 21rem); height: auto; margin-inline: auto; transform: rotate(-4deg); }
+.fox-mark .f-fur    { fill: var(--color-accent); }
+.fox-mark .f-fur-dk { fill: var(--color-accent-deep); }
+.fox-mark .f-cream  { fill: var(--color-paper); }
+.fox-mark .f-ink    { fill: var(--color-ink); }
+@media (max-width: 60rem) {
+  .hero-art { grid-template-columns: minmax(0, 1fr); padding-block: var(--space-xl) var(--space-2xl); }
+  .fox-mark { width: min(58%, 15rem); }
+}
+
+/* ---- FAQ · das ehrliche Interview ---- */
+.faq {
+  max-width: 46rem;
+  padding-inline: var(--page-gutter);
+  margin-bottom: var(--space-2xl);
+}
+.faq details { border-top: var(--rule-heavy); }
+.faq details:last-of-type { border-bottom: var(--rule-heavy); }
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-block: var(--space-lg);
+  min-height: 44px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.faq summary .marker {
+  flex-shrink: 0;
+  width: 2rem; height: 2rem;
+  display: grid;
+  place-items: center;
+  border: var(--rule-heavy);
+  font-weight: 700;
+  font-size: var(--text-md);
+  line-height: 1;
+  transition: transform var(--dur-short) var(--ease-out),
+              background-color var(--dur-short) var(--ease-out);
+}
+.faq summary:hover .marker { background: var(--color-paper-2); }
+.faq summary:active .marker { transform: translateY(1px); }
+.faq details[open] summary .marker { transform: rotate(45deg); background: var(--color-accent); }
+.faq .answer {
+  padding-bottom: var(--space-lg);
+  max-width: 58ch;
+  color: var(--color-ink-2);
+}
+.faq .answer p + p { margin-top: var(--space-sm); }
+.faq details[open] .answer {
+  animation: answer-in var(--dur-short) var(--ease-out);
+}
+@keyframes answer-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---- Kontakt-CTA am Fuß der Fragen ---- */
+.ask {
+  max-width: 46rem;
+  padding-inline: var(--page-gutter);
+  margin-bottom: var(--space-3xl);
+}
+.ask h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-xl);
+  line-height: 1.1;
+  margin-bottom: var(--space-lg);
+}
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md) var(--space-lg);
+}
+.wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--color-whatsapp);
+  border: var(--rule-heavy);
+  color: var(--color-ink);
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color var(--dur-short) var(--ease-out),
+              transform 100ms var(--ease-out);
+}
+.wa-btn:hover { background: var(--color-whatsapp-dn); transform: translateY(-1.5px); }
+.wa-btn:active { transform: translateY(1px); }
+.wa-btn svg { width: 21px; height: 21px; flex-shrink: 0; }
+.ig-link {
+  color: var(--color-accent-deep);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+  white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.ig-link:hover { color: var(--color-ink); }
+
+/* ---- Footer · Ft8 marquee scroll ---- */
+.foot-marquee { overflow: hidden; border-top: var(--rule-heavy); }
+.foot-marquee__track {
+  display: flex;
+  gap: var(--space-2xl);
+  white-space: nowrap;
+  padding-block: var(--space-md);
+  animation: foot-marquee 48s linear infinite;
+}
+.foot-marquee__track span {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: var(--color-accent-deep);
+}
+@keyframes foot-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.foot-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-lg);
+  padding: var(--space-md) var(--page-gutter) var(--space-lg);
+  border-top: var(--rule-hairline);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+.foot-meta a { color: var(--color-muted); text-underline-offset: 0.2em; }
+.foot-meta a:hover { color: var(--color-ink-2); }
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .foot-marquee__track { animation: none; }
+  *, *::before, *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
   }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--bark);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .card {
-    background: #fff;
-    border-radius: 2rem;
-    box-shadow: 0 20px 60px rgba(44,31,20,.12);
-    max-width: 460px;
-    width: 100%;
-    text-align: center;
-  }
-
-  .card-body {
-    padding: 2.5rem 2.5rem 3rem;
-  }
-
-  /* Runder Rahmen – Best Practice */
-  .fox-avatar {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
-    /* Doppelter Ring: innen fox-pale, außen fox-Farbe */
-    outline: 4px solid var(--fox);
-    outline-offset: 4px;
-    box-shadow:
-      0 0 0 8px var(--fox-pale),   /* weicher Puffer-Ring */
-      0 12px 40px rgba(212,98,42,.25); /* warmer Schatten */
-    overflow: hidden;
-    background: var(--fox-pale);
-    /* verhindert Kantenflimmern auf Retina */
-    transform: translateZ(0);
-  }
-
-  .fox-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Bildausschnitt: Fuchs ist oben-mittig im Bild */
-    object-position: center 50%;
-    display: block;
-  }
-
-  h1 {
-    font-family: 'Fraunces', serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--bark);
-    line-height: 1.2;
-    margin-bottom: .3rem;
-  }
-
-  h1 span {
-    color: var(--fox);
-    font-style: italic;
-  }
-
-  .subtitle {
-    font-size: .95rem;
-    color: var(--mid);
-    margin-bottom: 0;
-    font-weight: 300;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    font-size: .8rem;
-  }
-
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 1.6rem 0;
-  }
-
-  .message {
-    font-size: 1.05rem;
-    color: var(--mid);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  .message strong {
-    color: var(--bark);
-    font-weight: 600;
-  }
-
-  .wa-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: .7rem;
-    background: #25D366;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: .9rem 2rem;
-    border-radius: 3rem;
-    transition: background .2s, transform .15s, box-shadow .2s;
-    box-shadow: 0 4px 16px rgba(37,211,102,.3);
-  }
-
-  .wa-btn:hover {
-    background: #1fba58;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(37,211,102,.4);
-  }
-
-  .wa-btn svg {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
-  }
-
-  .footer {
-    margin-top: 2rem;
-    font-size: .8rem;
-    color: var(--light);
-  }
-
-  .footer a {
-    color: var(--light);
-    text-decoration: none;
-  }
-
-  .footer a:hover { color: var(--mid); }
-
-  @media (max-width: 480px) {
-    .card-body { padding: 2rem 1.5rem 2.5rem; }
-    h1 { font-size: 1.6rem; }
-    .fox-avatar { width: 160px; height: 160px; }
-  }
+}
 </style>
 </head>
 <body>
 
-<div class="card">
-  <div class="card-body">
-    <div class="fox-avatar">
-      <img src="fuchs.jpg" alt="Mama-Fuchs mit ihren Jungen – Der Fuchsbau">
+<header class="nav-slab">
+  <a class="slab-mark" href="/">Der Fuchsbau</a>
+  <nav class="slab-nav" aria-label="Hauptnavigation">
+    <ul>
+      <li><a href="#fragen">Fragen</a></li>
+      <li><a href="https://www.instagram.com/der_fuchsbau2025/" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+  </nav>
+  <a class="slab-cta" href="https://wa.me/491627820602" target="_blank" rel="noopener">WhatsApp</a>
+</header>
+
+<main>
+  <section class="hero-art">
+    <div>
+      <h1 class="reveal" style="--i: 0">Ein Bau für <span class="u-accent">kleine Füchse</span>.</h1>
+      <p class="lede reveal" style="--i: 1">Der Fuchsbau ist eine Kindertagespflege für junge Kinder
+      in Mücke. Die wichtigsten Antworten stehen hier — alles Weitere
+      beantworten wir persönlich auf WhatsApp, das Neueste zeigen wir
+      auf Instagram.</p>
     </div>
-    <h1>Der <span>Fuchsbau</span></h1>
-    <p class="subtitle">Kindertagespflege</p>
+    <div class="fox-wrap reveal" style="--i: 2">
+    <svg class="fox-mark" viewBox="0 0 240 230" role="img" aria-label="Gezeichneter Fuchskopf">
+      <!-- Ohren -->
+      <polygon class="f-fur"    points="52,14 98,74 26,88"/>
+      <polygon class="f-fur"    points="188,14 214,88 142,74"/>
+      <polygon class="f-fur-dk" points="60,32 88,70 46,78"/>
+      <polygon class="f-fur-dk" points="180,32 194,78 152,70"/>
+      <!-- Kopf -->
+      <path class="f-fur" d="M 26 88 L 214 88 Q 216 150 120 212 Q 24 150 26 88 Z"/>
+      <!-- Wangen / Schnauze -->
+      <path class="f-cream" d="M 120 212 Q 66 172 80 122 L 120 144 L 160 122 Q 174 172 120 212 Z"/>
+      <!-- Augen -->
+      <circle class="f-ink" cx="86" cy="112" r="7"/>
+      <circle class="f-ink" cx="154" cy="112" r="7"/>
+      <!-- Nase -->
+      <path class="f-ink" d="M 106 152 L 134 152 Q 137 154 134 158 L 124 170 Q 120 174 116 170 L 106 158 Q 103 154 106 152 Z"/>
+    </svg>
+    </div>
+  </section>
 
-    <hr class="divider">
+  <section class="faq" id="fragen" aria-label="Fragen und Antworten">
+    <details open>
+      <summary><h2>Was ist der Fuchsbau?</h2><span class="marker" aria-hidden="true">+</span></summary>
+      <div class="answer">
+        <p>Eine Kindertagespflege für junge Kinder bei Katharina Klee —
+        mit Pflegeerlaubnis und Zulassung des Jugendamts nach
+        §&#8202;43 SGB&#8202;VIII. Das heißt: Betreuung in kleiner, fester
+        Runde, persönlicher als der große Betrieb.</p>
+      </div>
+    </details>
+    <details>
+      <summary><h2>Wo findet ihr uns?</h2><span class="marker" aria-hidden="true">+</span></summary>
+      <div class="answer">
+        <p>Im Herrmannsbergweg&nbsp;16 in 35325 Mücke — für Familien aus
+        Mücke und der Umgebung.<br>
+        <a href="https://share.google/xQpUhlmY3dIEI0mPI" target="_blank" rel="noopener">Auf Google Maps öffnen&nbsp;↗</a></p>
+      </div>
+    </details>
+    <details>
+      <summary><h2>Wie sieht es bei euch aus?</h2><span class="marker" aria-hidden="true">+</span></summary>
+      <div class="answer">
+        <p>Impressionen aus dem Fuchsbau zeigen wir auf Instagram —
+        dort seht ihr, was bei uns gerade passiert:<br>
+        <a href="https://www.instagram.com/der_fuchsbau2025/" target="_blank" rel="noopener">@der_fuchsbau2025&nbsp;↗</a></p>
+      </div>
+    </details>
+    <details>
+      <summary><h2>Gibt es freie Plätze?</h2><span class="marker" aria-hidden="true">+</span></summary>
+      <div class="answer">
+        <p>Das ändert sich immer wieder — fragt einfach kurz per WhatsApp
+        nach. Eine Nachricht genügt, ihr bekommt eine persönliche Antwort.</p>
+      </div>
+    </details>
+  </section>
 
-    <p class="message">
-      Unsere neue Website ist noch im Aufbau.<br>
-      <strong>Wir sind bald für euch da!</strong><br><br>
-      Bis dahin könnt ihr uns einfach direkt über WhatsApp erreichen.
-    </p>
+  <section class="ask" aria-label="Kontakt">
+    <h2>Noch Fragen?</h2>
+    <div class="contact-row">
+      <a class="wa-btn" href="https://wa.me/491627820602" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Schreibt uns auf WhatsApp
+      </a>
+      <a class="ig-link" href="https://www.instagram.com/der_fuchsbau2025/" target="_blank" rel="noopener">Instagram&nbsp;↗</a>
+      <a class="ig-link" href="https://share.google/xQpUhlmY3dIEI0mPI" target="_blank" rel="noopener">Google&nbsp;Maps&nbsp;↗</a>
+    </div>
+  </section>
+</main>
 
-    <a class="wa-btn" href="https://wa.me/491627820602" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      Schreib uns auf WhatsApp
-    </a>
+<footer class="foot-marquee" aria-label="Fußzeile">
+  <div class="foot-marquee__track" aria-hidden="true">
+    <span>Der Fuchsbau · Kindertagespflege · Mücke · Der Fuchsbau · Kindertagespflege · Mücke ·</span>
+    <span>Der Fuchsbau · Kindertagespflege · Mücke · Der Fuchsbau · Kindertagespflege · Mücke ·</span>
   </div>
-</div>
+  <p class="visually-hidden">Der Fuchsbau · Kindertagespflege · Mücke</p>
+  <div class="foot-meta">
+    <span>Kindertagespflege nach §&#8202;43 SGB&#8202;VIII · Mücke und Umgebung</span>
+    <a href="impressum.html">Impressum &amp; Datenschutz</a>
+  </div>
+</footer>
 
 </body>
 </html>
