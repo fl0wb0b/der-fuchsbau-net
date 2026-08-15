@@ -37,6 +37,11 @@
   --color-focus:       oklch(52%   0.19  44);
   --color-whatsapp:    oklch(76.1% 0.201 150);
   --color-whatsapp-dn: oklch(72%   0.19  150);
+  --color-photo-paper: oklch(99%   0.005 70); /* Fotopapier/Bildflächen — nie reines Weiß */
+  --color-badge-sms:   oklch(80%   0.09  235); /* Kanal-Farben: SMS himmelblau */
+  --color-badge-sms-dn: oklch(76%  0.10  235);
+  --color-badge-mail:  oklch(83%   0.09  60);  /* E-Mail apricot */
+  --color-badge-mail-dn: oklch(79% 0.10  60);
 
   /* Schrift — Bricolage Grotesque (Display) + Geist (Body), beide OFL, selbst gehostet */
   --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
