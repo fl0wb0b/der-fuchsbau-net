@@ -74,7 +74,7 @@ body {
   z-index: 0;
   bottom: 1px;
   left: 0;
-  width: 58px;
+  width: 62px;
   height: 34px;
   pointer-events: none;
   animation: fox-cross 32s linear infinite;
@@ -448,22 +448,25 @@ body {
 
 <header class="nav-slab">
   <span class="fox-runner" aria-hidden="true">
-    <svg viewBox="0 0 120 64" xmlns="http://www.w3.org/2000/svg">
-      <!-- Schwanz mit heller Spitze -->
-      <path class="fr-fur" d="M 84 28 Q 108 10 117 25 Q 114 42 86 42 Z"/>
-      <circle class="fr-tip" cx="112" cy="26" r="6"/>
+    <svg viewBox="0 0 132 64" xmlns="http://www.w3.org/2000/svg">
+      <!-- buschiger Schwanz mit heller Spitze -->
+      <path class="fr-fur" d="M 80 32 C 92 10 116 4 127 14 C 134 21 130 36 118 42 C 106 48 90 46 82 42 Z"/>
+      <path class="fr-tip" d="M 113 8 C 122 6 129 11 127 19 C 125 26 116 27 110 22 C 108 17 109 11 113 8 Z"/>
       <!-- Beine (traben) -->
-      <rect class="fr-leg"          x="38" y="40" width="5" height="19" rx="2"/>
-      <rect class="fr-leg fr-leg--b" x="48" y="40" width="5" height="19" rx="2"/>
-      <rect class="fr-leg fr-leg--b" x="66" y="40" width="5" height="19" rx="2"/>
-      <rect class="fr-leg"          x="76" y="40" width="5" height="19" rx="2"/>
-      <!-- Körper -->
-      <ellipse class="fr-fur" cx="58" cy="33" rx="30" ry="14"/>
-      <!-- Kopf mit Ohr, nach links laufend -->
-      <polygon class="fr-dark" points="30,16 37,1 44,18"/>
-      <polygon class="fr-fur" points="4,30 31,12 41,34 20,41"/>
-      <circle class="fr-ink" cx="7" cy="30" r="2.6"/>
-      <circle class="fr-ink" cx="24" cy="24" r="2.4"/>
+      <rect class="fr-leg"          x="34" y="42" width="4.5" height="18" rx="2"/>
+      <rect class="fr-leg fr-leg--b" x="44" y="42" width="4.5" height="18" rx="2"/>
+      <rect class="fr-leg fr-leg--b" x="64" y="42" width="4.5" height="18" rx="2"/>
+      <rect class="fr-leg"          x="74" y="42" width="4.5" height="18" rx="2"/>
+      <!-- Körper, leicht gewölbter Rücken -->
+      <path class="fr-fur" d="M 24 32 C 34 18 70 16 86 30 C 90 40 78 47 54 47 C 38 47 26 41 24 32 Z"/>
+      <!-- Ohr -->
+      <polygon class="fr-fur" points="22,18 29,0 36,19"/>
+      <polygon class="fr-dark" points="25.5,14 29,5 32.5,15"/>
+      <!-- Kopf mit spitzer Schnauze und weißer Wange -->
+      <polygon class="fr-fur" points="2,35 24,14 35,32 18,43"/>
+      <polygon class="fr-tip" points="8,36 20,29 24,40 15,43"/>
+      <circle class="fr-ink" cx="4.5" cy="34.5" r="2.6"/>
+      <circle class="fr-ink" cx="19" cy="25" r="2.3"/>
     </svg>
   </span>
   <a class="slab-mark" href="/">Der Fuchsbau</a>
