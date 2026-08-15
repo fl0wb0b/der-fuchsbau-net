@@ -103,6 +103,14 @@ def main() -> int:
         print("Keine verwendbaren Bilder im Feed — Galerie bleibt unverändert.")
         return 0
 
+    # Auf Instagram gelöschte Posts auch hier löschen: alle photo-*.jpg
+    # entfernen, die nicht mehr zum aktuellen Bestand gehören
+    current = {item["file"] for item in items}
+    for existing in os.listdir(OUT_DIR):
+        if existing.startswith("photo-") and existing.endswith(".jpg") and existing not in current:
+            os.remove(os.path.join(OUT_DIR, existing))
+            print(f"Entfernt (nicht mehr im Feed): {existing}")
+
     manifest = {"updated": date.today().isoformat(), "items": items}
     with open(os.path.join(OUT_DIR, "manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=1)
