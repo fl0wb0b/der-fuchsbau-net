@@ -502,7 +502,7 @@ body {
 .ask__alt a { color: var(--color-ink-2); text-underline-offset: 0.2em; white-space: nowrap; }
 .ask__alt a:hover { color: var(--color-ink); }
 
-/* ---- Fuchs-Ecke über dem Footer: schläft, wacht auf, schaut hoch, hüpft ---- */
+/* ---- Schlafender Fuchs auf der Footer-Linie (Mittagsschlaf) ---- */
 .fox-sleeper {
   display: flex;
   justify-content: flex-end;
@@ -538,25 +538,6 @@ body {
 }
 .fox-sleeper .fs-z2 { animation-delay: 1.2s; }
 .fox-sleeper .fs-z3 { animation-delay: 2.4s; }
-/* Verhaltens-Schleife: 26 s — schlafen, aufwachen + hochschauen, hüpfen, einrollen */
-.fox-sleeper .p-sleep { animation: pose-sleep 26s linear infinite; }
-.fox-sleeper .p-sit   { opacity: 0; animation: pose-sit 26s linear infinite; }
-.fox-sleeper .p-jump  { opacity: 0; animation: pose-jump 26s linear infinite; }
-.fox-sleeper .p-jump-inner { transform-box: fill-box; transform-origin: bottom center; animation: jump-hop 26s linear infinite; }
-@keyframes pose-sleep { 0%, 49% { opacity: 1; } 50%, 88% { opacity: 0; } 89%, 100% { opacity: 1; } }
-@keyframes pose-sit   { 0%, 50% { opacity: 0; } 51%, 64% { opacity: 1; } 65%, 100% { opacity: 0; } }
-@keyframes pose-jump  { 0%, 65% { opacity: 0; } 66%, 87% { opacity: 1; } 88%, 100% { opacity: 0; } }
-@keyframes jump-hop {
-  0%, 66% { transform: translateY(0) scaleY(1); animation-timing-function: ease-in-out; }
-  67.2% { transform: translateY(3px) scaleY(0.88); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
-  69.5% { transform: translateY(-24px) scaleY(1.06) rotate(-6deg); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
-  71.8% { transform: translateY(2px) scaleY(0.85); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
-  74.5% { transform: translateY(-30px) scaleY(1.08) rotate(-8deg); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
-  77.2% { transform: translateY(2px) scaleY(0.85); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
-  79.8% { transform: translateY(-18px) scaleY(1.05) rotate(-4deg); animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); }
-  82.2% { transform: translateY(2px) scaleY(0.9); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
-  84%, 100% { transform: translateY(0) scaleY(1); }
-}
 @keyframes fox-breathe { from { transform: scaleY(1); } to { transform: scaleY(1.055); } }
 @keyframes fox-earflick {
   0%, 86%, 94%, 100% { transform: rotate(0deg); }
@@ -570,11 +551,8 @@ body {
   100% { opacity: 0; transform: translate(4px, -11px) scale(1.15); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .fox-sleeper .fs-body, .fox-sleeper .fs-ear, .fox-sleeper .p-sleep,
-  .fox-sleeper .p-sit, .fox-sleeper .p-jump, .fox-sleeper .p-jump-inner { animation: none; }
+  .fox-sleeper .fs-body, .fox-sleeper .fs-ear { animation: none; }
   .fox-sleeper .fs-z { animation: none; opacity: 0; }
-  .fox-sleeper .p-sit, .fox-sleeper .p-jump { display: none; }
-  .fox-sleeper .p-sleep { opacity: 1; }
 }
 
 /* ---- Footer · Ft8 marquee scroll ---- */
@@ -788,8 +766,7 @@ body {
 
 <div class="fox-sleeper" aria-hidden="true">
   <svg viewBox="0 -18 84 64" xmlns="http://www.w3.org/2000/svg">
-    <!-- Pose 1: schlafen -->
-    <g class="p-sleep">
+    <g>
       <g class="fs-body">
         <ellipse class="fs-fur" cx="44" cy="29" rx="31" ry="16"/>
         <path class="fs-fur" d="M 72 32 C 70 41 56 46 40 45 C 26 44 15 40 13 33 C 20 40 38 42 52 40 C 62 38 69 36 72 32 Z"/>
@@ -807,43 +784,6 @@ body {
       <text class="fs-z fs-z1" x="30" y="2"  font-size="8">z</text>
       <text class="fs-z fs-z2" x="37" y="-4" font-size="10">z</text>
       <text class="fs-z fs-z3" x="45" y="-9" font-size="12">Z</text>
-    </g>
-    <!-- Pose 2: aufgewacht, schaut nach oben -->
-    <g class="p-sit">
-      <path class="fs-fur" d="M 54 45 C 64 44 69 37 66 28 C 73 37 70 46 56 46 L 24 46 C 20 46 18 44 20 43 C 30 40 46 41 54 45 Z"/>
-      <circle class="fs-tip" cx="23" cy="44.5" r="3.2"/>
-      <path class="fs-fur" d="M 30 10 C 45 8 54 20 56 45 L 21 45 C 19 30 21 13 30 10 Z"/>
-      <path class="fs-tip" d="M 29 18 C 35 17 39 25 39 34 C 39 41 34 45 28 45 L 25 45 C 24 34 25 24 29 18 Z"/>
-      <circle class="fs-fur" cx="28" cy="7" r="10"/>
-      <polygon class="fs-fur" points="23,1 29,-13 35,0"/>
-      <polygon class="fs-dark" points="25.8,-2.5 29,-9.5 31.8,-2"/>
-      <polygon class="fs-fur" points="36,2 43,-10 47,3"/>
-      <polygon class="fs-dark" points="38.6,-1 42.5,-7 44.4,-0.5"/>
-      <polygon class="fs-fur" points="13,0 27,1 25,10"/>
-      <polygon class="fs-tip" points="16.5,4.5 25,5 23.5,9.5"/>
-      <circle class="fs-ink" cx="13.5" cy="0.5" r="1.8"/>
-      <circle class="fs-ink" cx="23.5" cy="3" r="2"/>
-    </g>
-    <!-- Pose 3: verspielte Hüpfer (Galopp-Silhouette, gedreht und federnd) -->
-    <g class="p-jump">
-      <g transform="translate(2 19) scale(0.46)">
-      <g class="p-jump-inner">
-        <g class="fr-tail">
-          <path class="fr-fur" d="M 114 21 C 128 12 146 5 160 6 C 168 7 171 12 168 16 C 160 26 140 31 126 29 C 118 28 112 25 114 21 Z"/>
-          <path class="fr-tip" d="M 152 5 C 160 4 168 8 168 14 C 167 19 160 22 152 21 C 146 19 144 13 146 9 C 148 6 150 5 152 5 Z"/>
-        </g>
-        <path class="fr-leg fr-leg-f1" d="M 44 30 C 36 36 26 41 17 44"/>
-        <path class="fr-leg fr-leg-f2" d="M 48 31 C 47 38 48 44 51 49"/>
-        <path class="fr-leg fr-leg-h1" d="M 106 28 C 116 34 126 39 135 42"/>
-        <path class="fr-leg fr-leg-h2" d="M 100 30 C 99 37 100 44 103 49"/>
-        <path class="fr-fur" d="M 2 20 C 6 17 10 15.5 15 14.5 C 18 12 21 10.5 25 10 C 34 8 52 11 66 14 C 80 16 92 14 102 13 C 110 13 116 16 117 21 C 118 26 114 29 110 30 C 96 32 82 32 70 30 C 60 28.5 52 29 46 31 C 41 32.5 36 31 30 28 C 22 26 12 25 5 23 C 3 22 2 21 2 20 Z"/>
-        <polygon class="fr-fur" points="24,11 35,0 40,12"/>
-        <polygon class="fr-dark" points="28.5,9 34.5,3 37.5,10"/>
-        <path class="fr-tip" d="M 3 21 C 10 23 18 24.5 27 26 C 34 28 40 30 46 31 C 52 29 60 28.5 70 30 C 84 32 98 32 110 30 C 106 33 96 34.5 84 34.5 C 72 34.5 60 33 50 33.5 C 43 34 37 33 31 30.5 C 21 28 9 26 3 23 Z"/>
-        <circle class="fr-ink" cx="3.5" cy="19.5" r="2.3"/>
-        <circle class="fr-ink" cx="15.5" cy="17" r="2"/>
-      </g>
-      </g>
     </g>
   </svg>
 </div>
