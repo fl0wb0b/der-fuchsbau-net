@@ -736,7 +736,7 @@ a.g-slide:hover { transform: translateY(-2px); }
   </section>
 
   <section class="faq" id="fragen" aria-label="Fragen und Antworten">
-    <details open>
+    <details>
       <summary><h2>Was ist der Fuchsbau?</h2><span class="marker" aria-hidden="true">+</span></summary>
       <div class="answer">
         <p>Ich bin Katharina, und der Fuchsbau ist meine Kindertagespflege
@@ -774,6 +774,13 @@ a.g-slide:hover { transform: translateY(-2px); }
       </div>
     </details>
   </section>
+  <script>
+  /* Desktop: erste Frage aufgeklappt. Mobil bleibt sie zu, damit die
+     Fakten-Leiste und die weiteren Fragen ohne Textwand erreichbar sind. */
+  if (window.matchMedia('(min-width: 40.0625rem)').matches) {
+    document.querySelector('.faq details').open = true;
+  }
+  </script>
 
   <section class="gallery" id="einblicke" hidden>
     <div class="gallery__head">
