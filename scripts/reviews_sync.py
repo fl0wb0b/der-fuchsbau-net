@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Google-Bewertungen-Sync für der-fuchsbau.net.
 
-Läuft täglich als GitHub Action: holt Gesamtwertung + Rezensionen über
-die offizielle Google-Places-API (New) und schreibt sie als reviews.json
-ins Repo. Die Website zeigt ausschließlich diese lokale Kopie — Besucher
-haben keinen Kontakt zu Google.
+Läuft in der GitHub Action „Seite veröffentlichen“: holt Gesamtwertung +
+Rezensionen über die offizielle Google-Places-API (New) und schreibt sie
+als reviews.json ins Pages-Artefakt (nicht ins Git-Repo). Die Website zeigt
+ausschließlich diese Kopie — Besucher haben keinen Kontakt zu Google.
 
 Der API-Schlüssel kommt aus dem GitHub-Secrets-Tresor (GOOGLE_PLACES_KEY),
 die Place-ID ist öffentlich und steht im Workflow. Ist eines von beiden
-leer, wird der Sync still übersprungen — die Anzeige friert dann beim
-letzten Stand ein, nichts geht kaputt.
+leer, wird der Sync still übersprungen — der Abschnitt bleibt dann
+unsichtbar, nichts geht kaputt.
 """
 
 import json
