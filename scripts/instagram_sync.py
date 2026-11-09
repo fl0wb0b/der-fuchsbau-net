@@ -17,7 +17,7 @@ import io
 import json
 import os
 import sys
-from datetime import date
+from datetime import datetime, timezone
 
 import requests
 from PIL import Image
@@ -30,6 +30,7 @@ OUT_DIR = "gallery"
 
 
 def main() -> int:
+    """Holt den Feed, speichert bis zu MAX_POSTS Bilder ohne EXIF und schreibt das Manifest."""
     if not FEED_URL:
         print("FEED_URL ist leer — Sync übersprungen (noch nicht konfiguriert).")
         return 0
@@ -114,7 +115,10 @@ def main() -> int:
             os.remove(os.path.join(OUT_DIR, existing))
             print(f"Entfernt (nicht mehr im Feed): {existing}")
 
-    manifest = {"updated": date.today().isoformat(), "items": items}
+    # Zeitstempel je Lauf: Die Seite hängt ihn als ?v= an die Bild-URLs, damit auch zwei
+    # Deploys am selben Tag mit anderen Fotos keine alten Bilder aus dem Cache zeigen
+    updated = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    manifest = {"updated": updated, "items": items}
     with open(os.path.join(OUT_DIR, "manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=1)
     print(f"{len(items)} Bilder synchronisiert.")

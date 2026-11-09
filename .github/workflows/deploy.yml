@@ -16,29 +16,34 @@ on:
     - cron: "23 3 * * *"   # täglich 03:23 UTC — bewusst nicht zur vollen Stunde
   workflow_dispatch: {}     # manueller Start über den Actions-Tab
 
+# Grundrecht für alle Jobs: nur Lesen. Schreibrechte bekommt allein der deploy-Job.
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: read  # Checkout des öffentlichen Repos
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
+  # build führt fremden Code aus (pip-Pakete, Bildverarbeitung von Feed-Daten),
+  # deshalb ohne pages- und id-token-Rechte
   build:
+    name: Seite bauen
     runs-on: ubuntu-latest
     env:
       FEED_URL: "https://feeds.behold.so/LgF2Ep66rtknBcqlYMEZ"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false  # kein Token in .git/config, der Build pusht nichts
 
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.12"
 
       - name: Abhängigkeiten
-        run: pip install --quiet requests pillow
+        # Feste Versionen statt „neueste“: kein ungeprüftes Update im Build
+        run: pip install --quiet requests==2.34.2 pillow==13.0.0
 
       # Fällt Instagram/Behold aus, wird die Seite trotzdem veröffentlicht,
       # nur ohne Galerie (der Abschnitt bleibt dann unsichtbar).
@@ -56,8 +61,12 @@ jobs:
           path: _site
 
   deploy:
+    name: Seite veröffentlichen
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write     # Deployment auf GitHub Pages anlegen
+      id-token: write  # OIDC-Token, mit dem deploy-pages sich ausweist
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
