@@ -30,6 +30,7 @@ OUT_DIR = "gallery"
 
 
 def main() -> int:
+    """Holt den Feed, speichert bis zu MAX_POSTS Bilder ohne EXIF und schreibt das Manifest."""
     if not FEED_URL:
         print("FEED_URL ist leer — Sync übersprungen (noch nicht konfiguriert).")
         return 0
