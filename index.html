@@ -819,7 +819,9 @@ a.g-tile:active { transform: translateY(1px); }
       data.items.forEach(function (item) {
         if (!item || !item.file) return;
         var img = document.createElement('img');
-        img.src = 'gallery/' + item.file;
+        // Die Dateinamen bleiben gleich (photo-1.jpg …), der Inhalt wechselt täglich:
+        // ?v=<Datum> verhindert, dass Browser und Cloudflare ein altes Foto zeigen
+        img.src = 'gallery/' + item.file + (data.updated ? '?v=' + encodeURIComponent(data.updated) : '');
         img.width = 800;
         img.height = 1000;
         img.loading = 'lazy';
