@@ -23,7 +23,7 @@ from PIL import Image
 
 FEED_URL = os.environ.get("FEED_URL", "").strip()
 MAX_POSTS = 6
-MAX_WIDTH = 1200
+MAX_WIDTH = 640  # Raster zeigt die Fotos höchstens ~300 px breit; 640 reicht auch für Retina
 JPEG_QUALITY = 82
 OUT_DIR = "gallery"
 
