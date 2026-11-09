@@ -8,12 +8,12 @@
  * responsive: pass (49) · icons: pass (30) · mobile: pass (34, 49, 50–57) — verifiziert bei 320/375/414/768/1280 px
  */
 
-/* Selbst gehostet — kein Google-CDN, keine IP-Übertragung an Dritte (DSGVO) */
+/* Selbst gehostet — kein Google-CDN, keine IP-Übertragung an Dritte (DSGVO)
+   Beide Dateien auf Latin gekürzt; Bricolage nur noch 700–800 bei Breite 100 (mehr nutzt die Seite nicht) */
 @font-face {
   font-family: 'Bricolage Grotesque';
   src: url('fonts/BricolageGrotesque-var.woff2') format('woff2-variations');
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
+  font-weight: 700 800;
   font-display: swap;
 }
 @font-face {
@@ -38,21 +38,13 @@
   --color-whatsapp:    oklch(76.1% 0.201 150);
   --color-whatsapp-dn: oklch(72%   0.19  150);
   --color-photo-paper: oklch(99%   0.005 70); /* Fotopapier/Bildflächen — nie reines Weiß */
-  --color-badge-sms:   oklch(80%   0.09  235); /* Kanal-Farben: SMS himmelblau */
-  --color-badge-sms-dn: oklch(76%  0.10  235);
-  --color-badge-mail:  oklch(83%   0.09  60);  /* E-Mail apricot */
-  --color-badge-mail-dn: oklch(79% 0.10  60);
-  --color-badge-ig:    oklch(83%   0.08  340); /* Instagram rosé */
-  --color-badge-ig-dn: oklch(79%   0.09  340);
-  --color-badge-maps:  oklch(82%   0.08  25);  /* Google Maps koralle */
-  --color-badge-maps-dn: oklch(78% 0.09  25);
 
   /* Schrift — Bricolage Grotesque (Display) + Geist (Body), beide OFL, selbst gehostet */
   --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   --font-body:    'Geist', ui-sans-serif, system-ui, sans-serif;
 
   /* Skala — 1.25 (große Terz) ab 16 px */
-  --text-sm:   0.8rem;
+  --text-sm:   0.875rem;
   --text-base: 1rem;
   --text-md:   1.25rem;
   --text-lg:   1.5625rem;
