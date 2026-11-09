@@ -1,8 +1,7 @@
 # Seite bauen und veröffentlichen.
 #
-# Holt bei jedem Lauf die neuesten Instagram-Fotos (und, falls eingerichtet,
-# die Google-Bewertungen) und veröffentlicht sie zusammen mit der Seite als
-# Pages-Artefakt. Fotos und Bewertungen landen NICHT mehr im Git-Repo:
+# Holt bei jedem Lauf die neuesten Instagram-Fotos und veröffentlicht sie
+# zusammen mit der Seite als Pages-Artefakt. Die Fotos landen NICHT im Git-Repo:
 # Was auf Instagram gelöscht wird, verschwindet beim nächsten Lauf auch hier,
 # ohne Spuren in der Git-Historie.
 #
@@ -31,8 +30,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FEED_URL: "https://feeds.behold.so/LgF2Ep66rtknBcqlYMEZ"
-      GOOGLE_PLACE_ID: ""   # <-- Place-ID des Maps-Eintrags (öffentlich)
-      GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}  # API-Schlüssel: nur im Secrets-Tresor
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -43,15 +40,11 @@ jobs:
       - name: Abhängigkeiten
         run: pip install --quiet requests pillow
 
-      # Fällt ein Dienst aus, wird die Seite trotzdem veröffentlicht,
-      # nur ohne Galerie bzw. Bewertungen (die Abschnitte bleiben dann unsichtbar).
+      # Fällt Instagram/Behold aus, wird die Seite trotzdem veröffentlicht,
+      # nur ohne Galerie (der Abschnitt bleibt dann unsichtbar).
       - name: Instagram-Feed holen und Bilder verarbeiten
         continue-on-error: true
         run: python scripts/instagram_sync.py
-
-      - name: Google-Bewertungen holen
-        continue-on-error: true
-        run: python scripts/reviews_sync.py
 
       - name: Seite zusammenstellen
         run: |
