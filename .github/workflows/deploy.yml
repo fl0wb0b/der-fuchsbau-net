@@ -1,0 +1,73 @@
+# Seite bauen und veröffentlichen.
+#
+# Holt bei jedem Lauf die neuesten Instagram-Fotos (und, falls eingerichtet,
+# die Google-Bewertungen) und veröffentlicht sie zusammen mit der Seite als
+# Pages-Artefakt. Fotos und Bewertungen landen NICHT mehr im Git-Repo:
+# Was auf Instagram gelöscht wird, verschwindet beim nächsten Lauf auch hier,
+# ohne Spuren in der Git-Historie.
+#
+# Voraussetzung: Settings → Pages → Source = „GitHub Actions“.
+
+name: Seite veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 3 * * *"   # täglich 03:23 UTC — bewusst nicht zur vollen Stunde
+  workflow_dispatch: {}     # manueller Start über den Actions-Tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      FEED_URL: "https://feeds.behold.so/LgF2Ep66rtknBcqlYMEZ"
+      GOOGLE_PLACE_ID: ""   # <-- Place-ID des Maps-Eintrags (öffentlich)
+      GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}  # API-Schlüssel: nur im Secrets-Tresor
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+
+      - name: Abhängigkeiten
+        run: pip install --quiet requests pillow
+
+      # Fällt ein Dienst aus, wird die Seite trotzdem veröffentlicht,
+      # nur ohne Galerie bzw. Bewertungen (die Abschnitte bleiben dann unsichtbar).
+      - name: Instagram-Feed holen und Bilder verarbeiten
+        continue-on-error: true
+        run: python scripts/instagram_sync.py
+
+      - name: Google-Bewertungen holen
+        continue-on-error: true
+        run: python scripts/reviews_sync.py
+
+      - name: Seite zusammenstellen
+        run: |
+          rsync -a --exclude '.git*' --exclude '.hallmark' --exclude 'scripts' --exclude '_site' ./ _site/
+          ls -R _site
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

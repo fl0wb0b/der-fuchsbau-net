@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Instagram-Sync für der-fuchsbau.net.
 
-Läuft täglich als GitHub Action: holt die neuesten Posts aus dem
-Behold-JSON-Feed, verkleinert die Bilder, entfernt EXIF-Daten
-(Datenschutz: Handyfotos enthalten oft GPS-Koordinaten) und legt sie
-als lokale Dateien unter gallery/ ab. Die Website zeigt ausschließlich
-diese lokalen Kopien — Besucher haben keinen Kontakt zu Meta/Behold.
+Läuft in der GitHub Action „Seite veröffentlichen“: holt die neuesten
+Posts aus dem Behold-JSON-Feed, verkleinert die Bilder, entfernt
+EXIF-Daten (Datenschutz: Handyfotos enthalten oft GPS-Koordinaten) und
+legt sie unter gallery/ ab. Von dort gehen sie direkt ins Pages-Artefakt,
+nicht ins Git-Repo (gallery/ steht in .gitignore). Die Website zeigt
+ausschließlich diese Kopien — Besucher haben keinen Kontakt zu Meta/Behold.
 
 Bricht die Verbindung irgendwann (API-Änderung, Konto getrennt),
-schlägt dieses Skript fehl oder liefert nichts Neues — die Galerie
-friert dann einfach beim letzten Stand ein. Kein Fehler auf der Seite.
+schlägt dieses Skript fehl oder liefert nichts — die Seite wird dann
+ohne Galerie veröffentlicht, der Abschnitt bleibt unsichtbar.
 """
 
 import io
